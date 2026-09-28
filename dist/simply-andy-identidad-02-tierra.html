@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simply Andy — Tierra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --peri:#61603A; --black:#2A2620; --grey:#51091B; --maho:#1F2C44; --apri:#864C24; --cream:#E9E2D0;
+  --paper:#E9E2D0;
+  --logo-ink:#2A2620; --logo-dot:#61603A;
+  --display:'Space Grotesk', system-ui, sans-serif;
+  --body:'Karla', 'Helvetica Neue', Arial, sans-serif;
+  /* tema activo de los mockups */
+  --bg:var(--cream); --fg:var(--black); --ac:var(--peri); --ac2:var(--maho); --mu:var(--grey);
+  --on-ac:#E9E2D0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--black);font-family:var(--body);line-height:1.5;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.display{font-family:var(--display);letter-spacing:-.02em;line-height:1.02}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+section{padding:72px 0;border-top:1px solid rgba(1,0,1,.08)}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);margin-bottom:12px}
+h2{font-size:clamp(32px,5vw,56px);font-weight:800;margin-bottom:14px}
+.lead{max-width:640px;color:#3b3533;font-size:17px}
+
+/* NAV */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(253,244,234,.88);backdrop-filter:blur(10px);border-bottom:1px solid rgba(1,0,1,.08)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
+.logo{font-family:var(--display);font-weight:800;font-size:20px;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.logo .nav-logo{display:flex}
+.top nav{display:flex;gap:18px;font-size:14px;overflow-x:auto}
+.top nav a{color:var(--black);text-decoration:none;opacity:.7;white-space:nowrap}
+.top nav a:hover{opacity:1}
+
+/* PALETA */
+.swatches{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:36px}
+.sw{border-radius:24px;box-shadow:inset 0 0 0 1px rgba(1,0,1,.06);height:300px;padding:18px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;border:1px solid rgba(1,0,1,.1);transition:transform .25s}
+.sw:hover{transform:translateY(-6px)}
+.sw .hex{font-family:var(--display);font-size:24px;font-weight:800}
+.sw .nm{font-size:13px;font-weight:700}
+.sw .role{font-size:13px;opacity:.8;margin-top:4px}
+.sw .copy{font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.6}
+.ratio{display:flex;height:54px;border-radius:16px;overflow:hidden;margin-top:28px;border:1px solid rgba(1,0,1,.1)}
+.ratio div{display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.ratio-note{display:flex;flex-wrap:wrap;gap:18px;margin-top:12px;font-size:14px;color:#3b3533}
+
+/* ROLES */
+.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
+.role-card{background:#fff;border-radius:16px;padding:20px;border:1px solid rgba(1,0,1,.08)}
+.role-card .dot{width:44px;height:44px;border-radius:10px;margin-bottom:14px;border:1px solid rgba(1,0,1,.12)}
+.role-card h3{font-size:22px;margin-bottom:6px}
+.role-card p{font-size:14px;color:#3b3533}
+.role-card ul{margin-top:10px;padding-left:16px;font-size:13px;color:#3b3533}
+
+/* TIPO */
+.type-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:16px;margin-top:34px}
+.type-box{border-radius:24px;padding:28px}
+.type-box .big{font-size:clamp(56px,8vw,104px);font-weight:800}
+.scale div{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid rgba(1,0,1,.1);padding:10px 0;gap:10px}
+.scale small{font-size:12px;color:var(--grey);white-space:nowrap}
+
+/* CONTRASTE */
+.matrix{overflow-x:auto;margin-top:30px}
+table{border-collapse:separate;border-spacing:6px;min-width:680px;width:100%}
+th{font-size:12px;font-weight:700;text-align:left;color:var(--grey);letter-spacing:.06em;text-transform:uppercase;padding:4px}
+td{border-radius:10px;height:78px;padding:10px;vertical-align:top;border:1px solid rgba(1,0,1,.08)}
+td .aa{font-family:var(--display);font-weight:800;font-size:20px}
+td .r{font-size:11px;opacity:.85}
+td.na{background:repeating-linear-gradient(45deg,#f4ebe1 0 6px,#fbf4ec 6px 12px)}
+.badge{display:inline-block;font-style:normal;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;margin-top:4px;border:0}
+.b-ok{background:#fff;color:#2A2620;box-shadow:inset 0 0 0 1px rgba(1,0,1,.2)}
+.b-big{background:#F2B705;color:#2A2620}
+.b-bad{background:#D92D20;color:#fff}
+.badge-old{border:1px solid currentColor}
+
+/* LAB */
+.lab-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:28px 0 22px}
+.theme-btn{border:1.5px solid var(--black);background:#fff;border-radius:99px;padding:8px 14px 8px 8px;font:600 14px var(--body);cursor:pointer;display:flex;align-items:center;gap:8px;color:var(--black)}
+.theme-btn .chips{display:flex}
+.theme-btn .chips b{width:18px;height:18px;border-radius:50%;border:1px solid rgba(1,0,1,.2);margin-right:-5px}
+.theme-btn .chips b:last-child{margin-right:0}
+.theme-btn.on{background:var(--black);color:var(--cream)}
+.shuffle{margin-left:auto;background:var(--peri);border:1.5px solid var(--black);border-radius:99px;padding:10px 16px;font:700 14px var(--body);cursor:pointer;color:var(--cream)}
+.lab{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.mock{background:#fff;border-radius:24px;padding:16px;border:1px solid rgba(1,0,1,.08)}
+.mock .lbl{display:flex;justify-content:space-between;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);margin-bottom:12px}
+.m-web{grid-column:span 12}.m-post{grid-column:span 5}.m-reel{grid-column:span 3}.m-flyer{grid-column:span 4}
+.m-carousel{grid-column:span 7}.m-thumb{grid-column:span 5}
+.t{transition:background-color .45s,color .45s,border-color .45s,fill .45s}
+.canvas{background:var(--bg);color:var(--fg);border-radius:16px;overflow:hidden;position:relative}
+
+/* creator placeholder */
+.creator{position:absolute;display:flex;align-items:flex-end;justify-content:center}
+.creator .head{position:absolute;border-radius:50%;background:var(--ac2)}
+.creator .body{position:absolute;border-radius:50% 50% 0 0;background:var(--ac2)}
+
+/* POST */
+.post{aspect-ratio:1/1;padding:7%;display:flex;flex-direction:column;justify-content:space-between}
+.post .tag{display:inline-block;background:var(--ac);color:var(--on-ac);font-weight:700;font-size:12px;padding:5px 10px;border-radius:99px;align-self:flex-start}
+.post h3{font-size:clamp(28px,3.6vw,44px);font-weight:800;max-width:70%;position:relative;z-index:2}
+.post .foot{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:600;position:relative;z-index:2}
+.post .blob{position:absolute;right:-8%;bottom:-6%;width:58%;aspect-ratio:1;border-radius:50%;background:var(--ac)}
+.post .creator{right:8%;bottom:0;width:36%;height:62%}
+.post .creator .head{width:44%;aspect-ratio:1;top:6%}
+.post .creator .body{width:100%;height:52%;bottom:0}
+.ig-meta{display:flex;gap:10px;font-size:13px;margin-top:10px;color:#3b3533}
+
+/* REEL */
+.phone{aspect-ratio:9/16;border:6px solid var(--black);border-radius:24px;overflow:hidden;position:relative}
+.phone .canvas{position:absolute;inset:0;border-radius:0}
+.phone .creator{left:10%;right:10%;bottom:0;height:74%}
+.phone .creator .head{width:48%;aspect-ratio:1;top:0}
+.phone .creator .body{width:100%;height:56%;bottom:0}
+.reel-top{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;font-size:11px;font-weight:700;z-index:3}
+.reel-top .pill{background:var(--fg);color:var(--bg);padding:3px 8px;border-radius:99px}
+.caption{position:absolute;left:8%;right:8%;top:40%;text-align:center;z-index:3;font-family:var(--display);font-weight:800;font-size:clamp(16px,1.7vw,22px);line-height:1.15}
+.caption span{display:inline-block;padding:1px .12em;margin:2px 1px;border-radius:.12em;background:var(--black);color:#fff;transition:background .2s,color .2s,transform .2s}
+.caption span.hl{background:none;background-image:linear-gradient(color-mix(in srgb,var(--ac) 62%,transparent),color-mix(in srgb,var(--ac) 62%,transparent));background-repeat:no-repeat;background-size:100% 40%;background-position:0 78%;color:#fff;transform:scale(1.12) rotate(-3deg)}
+.side{position:absolute;right:8px;bottom:22%;display:flex;flex-direction:column;gap:10px;z-index:3}
+.side b{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.85);border:1px solid rgba(1,0,1,.2)}
+.handle{position:absolute;left:10px;bottom:12px;z-index:3;font-size:11px;font-weight:700;background:var(--fg);color:var(--bg);padding:4px 8px;border-radius:6px}
+
+/* FLYER */
+.flyer{aspect-ratio:1/1.414;padding:9%;display:flex;flex-direction:column}
+.flyer .kicker{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mu)}
+.flyer h3{font-size:clamp(30px,3.4vw,46px);font-weight:800;margin:10px 0 14px}
+.flyer h3 em{font-style:normal;background:var(--ac);color:var(--on-ac);padding:0 .12em;border-radius:.12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.flyer ul{list-style:none;font-size:13px;display:grid;gap:6px;margin-bottom:auto}
+.flyer li{display:flex;gap:8px;align-items:center}
+.flyer li:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ac)}
+.flyer .bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;border-top:2px solid var(--fg);padding-top:12px;font-size:12px}
+.qr{width:52px;height:52px;background:
+ conic-gradient(var(--fg) 25%,transparent 0 50%,var(--fg) 0 75%,transparent 0) 0 0/13px 13px;border:3px solid var(--fg);border-radius:6px}
+
+/* WEB */
+.browser{border:1.5px solid rgba(1,0,1,.15);border-radius:16px;overflow:hidden}
+.browser .chrome{height:32px;background:#f1e7dc;display:flex;align-items:center;gap:6px;padding:0 12px}
+.browser .chrome b{width:10px;height:10px;border-radius:50%;background:var(--grey);opacity:.5}
+.browser .chrome span{margin-left:14px;background:#fff;border-radius:6px;font-size:11px;padding:3px 10px;color:var(--grey)}
+.web{border-radius:0}
+.web nav{display:flex;justify-content:space-between;align-items:center;padding:18px 4%;font-size:14px;font-weight:600}
+.web nav .links{display:flex;gap:20px}
+.web nav .links a{color:inherit;text-decoration:none;opacity:.75}
+.btn{display:inline-block;padding:12px 20px;border-radius:99px;font-weight:600;font-size:15px;border:2px solid var(--fg);text-decoration:none}
+.btn.pri{background:var(--fg);color:var(--bg)}
+.btn.sec{background:transparent;color:var(--fg)}
+.btn.acc{background:var(--ac);color:var(--on-ac);border-color:var(--ac)}
+.web-hero{display:grid;grid-template-columns:1.2fr 1fr;gap:4%;padding:30px 4% 44px;align-items:center}
+.web-hero h3{font-size:clamp(34px,5.4vw,72px);font-weight:800;margin-bottom:16px}
+.web-hero h3 em{font-style:normal;background:var(--ac);color:var(--on-ac);padding:0 .12em;border-radius:.12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.web-hero p{font-size:16px;max-width:460px;opacity:.85;margin-bottom:22px}
+.web-hero .cta{display:flex;gap:10px;flex-wrap:wrap}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ccard{border-radius:16px;aspect-ratio:3/4;position:relative;overflow:hidden;border:2px solid var(--fg)}
+.ccard:nth-child(1){background:var(--ac);transform:rotate(-3deg)}
+.ccard:nth-child(2){background:var(--ac2);transform:rotate(2deg) translateY(18px)}
+.ccard .creator{left:12%;right:12%;bottom:0;height:70%}
+.ccard .creator .head{width:48%;aspect-ratio:1;top:0}
+.ccard .creator .body{width:100%;height:52%;bottom:0}
+.ccard:nth-child(1) .head,.ccard:nth-child(1) .body{background:var(--ac2)}
+.ccard:nth-child(2) .head,.ccard:nth-child(2) .body{background:var(--ac)}
+.ccard .chip{position:absolute;top:10px;left:10px;background:var(--bg);color:var(--fg);font-size:11px;font-weight:700;padding:4px 8px;border-radius:99px;border:1.5px solid var(--fg)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--fg)}
+.stats div{padding:18px 4%;border-right:2px solid var(--fg)}
+.stats div:last-child{border-right:0}
+.stats b{font-family:var(--display);font-size:clamp(24px,3vw,38px);display:block}
+.stats span{font-size:13px;opacity:.8}
+
+/* CARRUSEL */
+.slides{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.slide{aspect-ratio:4/5;border-radius:10px;padding:10%;display:flex;flex-direction:column;justify-content:space-between;font-size:12px;overflow:hidden;position:relative}
+.slide h4{font-family:var(--display);font-size:clamp(16px,1.9vw,24px);font-weight:800;line-height:1.05}
+.slide .n{font-family:var(--display);font-size:clamp(36px,4.4vw,60px);font-weight:800;line-height:1}
+.slide.s1{background:var(--bg);color:var(--fg)}
+.slide.s2{background:var(--ac);color:var(--on-ac)}
+.slide.s3{background:var(--fg);color:var(--bg)}
+.dots{display:flex;gap:4px;justify-content:center;margin-top:10px}
+.dots b{width:6px;height:6px;border-radius:50%;background:var(--grey);opacity:.35}
+.dots b:first-child{opacity:1;background:var(--black)}
+
+/* THUMB */
+.thumb{aspect-ratio:16/9;padding:6%;display:flex;flex-direction:column;justify-content:flex-end}
+.thumb h3{font-size:clamp(22px,2.6vw,34px);font-weight:800;max-width:62%;position:relative;z-index:2;text-transform:uppercase}
+.thumb h3 em{font-style:normal;background:var(--ac);color:var(--on-ac);padding:0 .12em;border-radius:.12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.thumb .creator{right:4%;bottom:0;width:36%;height:88%}
+.thumb .creator .head{width:50%;aspect-ratio:1;top:0}
+.thumb .creator .body{width:100%;height:50%;bottom:0}
+.thumb .time{position:absolute;right:8px;bottom:8px;background:rgba(1,0,1,.85);color:#fff;font-size:11px;padding:2px 6px;border-radius:6px;z-index:3}
+
+/* VIDEO */
+.vid-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:8px}
+@media (max-width:1000px){.vid-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.vid-grid{grid-template-columns:1fr}}
+.vcard{border-radius:16px;overflow:hidden;background:#fff;border:1px solid rgba(1,0,1,.08)}
+.vcard .stage{height:190px;display:flex;align-items:center;justify-content:center;position:relative;background:var(--shot);transition:background .4s}
+.vcard .info{padding:16px}
+.vcard h3{font-size:19px;margin-bottom:4px}
+.vcard p{font-size:13px;color:#3b3533}
+.sub1{font-family:var(--display);font-weight:800;font-size:21px;text-align:center;line-height:1.35}
+.sub1 span{background:var(--v-sub-bg);color:var(--v-sub-fg);padding:2px 8px;border-radius:10px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.sub1 b{background:var(--v-hl-bg);color:var(--v-hl-fg);padding:0 .12em;border-radius:.12em}
+.sub2{font-family:var(--body);font-weight:700;font-size:15px;background:var(--v-box-bg);color:var(--v-box-fg);padding:8px 12px;border-radius:10px;max-width:80%;text-align:center}
+.lower{position:absolute;left:14px;bottom:14px;display:flex;flex-direction:column;align-items:flex-start}
+.lower b{background:var(--v-ltn-bg);color:var(--v-ltn-fg);font-family:var(--display);font-size:16px;padding:4px 10px;border-radius:10px 10px 10px 0}
+.lower span{background:var(--v-ltr-bg);color:var(--v-ltr-fg);font-size:11px;font-weight:700;padding:3px 10px;border-radius:0 0 10px 10px}
+.wipe{position:absolute;inset:0;display:flex}
+.wipe i{flex:1;animation:wipe 3s ease-in-out infinite}
+.wipe i:nth-child(1){background:var(--v-w1)}.wipe i:nth-child(2){background:var(--v-w2);animation-delay:.12s}.wipe i:nth-child(3){background:var(--v-w3);animation-delay:.24s}.wipe i:nth-child(4){background:var(--v-w4);animation-delay:.36s}
+@keyframes wipe{0%,15%{transform:translateY(100%)}40%,60%{transform:translateY(0)}85%,100%{transform:translateY(-100%)}}
+.endstage{background:var(--v-end-bg)!important}
+.endcard{font-family:var(--display);font-weight:800;color:var(--v-end-fg);font-size:26px;text-align:center}
+.endcard small{display:block;font-family:var(--body);font-size:12px;font-weight:700;color:var(--v-end-ac);opacity:.72;letter-spacing:.14em;text-transform:uppercase;margin-top:6px}
+
+/* REGLAS */
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
+.rule{border-radius:24px;padding:24px}
+.rule h3{font-size:24px;margin-bottom:12px}
+.rule li{margin:0 0 8px 18px;font-size:15px}
+.do{background:var(--peri)}
+.dont{background:var(--maho);color:var(--apri)}
+
+/* TOKENS */
+
+.sub-h{font-size:clamp(24px,3vw,32px);font-weight:800;margin:56px 0 18px}
+.font-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:34px}
+.font-card{border-radius:24px;padding:26px;display:flex;flex-direction:column;gap:14px}
+.fc-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.fc-tag{font-size:11px;font-weight:600;padding:4px 10px;border-radius:99px;border:1px solid currentColor;opacity:.7}
+.fc-name{font-size:clamp(26px,3vw,34px);line-height:1.05}
+.fc-spec{font-size:clamp(44px,6vw,76px);line-height:1;letter-spacing:-.02em}
+.fc-weights{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:17px}
+.fc-use{font-size:14px;opacity:.8;max-width:440px}
+.hier{background:#fff;border-radius:24px;border:1px solid rgba(1,0,1,.08);overflow:hidden}
+.h-row{display:grid;grid-template-columns:240px 1fr;gap:24px;padding:22px 26px;border-bottom:1px solid rgba(1,0,1,.08);align-items:center}
+.h-row:last-child{border-bottom:0}
+.h-meta b{display:block;font-size:14px;margin-bottom:4px}
+.h-meta span{font-size:12px;color:#51091B;line-height:1.45;display:block}
+.demo-btn{display:inline-block;padding:11px 18px;border-radius:99px;font-weight:600;font-size:15px;font-family:var(--body)}
+.vid-sub{display:inline-block;font-family:var(--display);font-weight:800;font-size:28px;line-height:1.15;background:#2A2620;color:#fff;padding:6px 12px;border-radius:10px}
+.vid-sub b{background:#61603A;color:#E9E2D0;padding:0 .12em;border-radius:.12em}
+.fmt-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.fmt{background:#fff;border-radius:24px;padding:14px;border:1px solid rgba(1,0,1,.08)}
+.fmt-lbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#51091B;margin-bottom:10px}
+.fmt-demo{border-radius:10px;padding:10%;display:flex;flex-direction:column;justify-content:space-between;gap:8px;border:1px solid rgba(1,0,1,.06)}
+.fd-tag{align-self:flex-start;background:#61603A;color:#E9E2D0;font-size:10px;font-weight:700;padding:3px 8px;border-radius:99px}
+.fmt-list{list-style:none;margin-top:12px;font-size:12.5px;color:#3b3533;display:grid;gap:5px}
+.fmt-list li{padding-left:14px;position:relative}
+.fmt-list li:before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:#61603A}
+.type-rules{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.type-rules div{background:#2A2620;color:#E9E2D0;border-radius:16px;padding:18px;font-size:14px;line-height:1.45}
+.type-rules b{display:block;font-family:var(--display);font-size:17px;color:#E9E2D0;margin-bottom:4px}
+@media (max-width:900px){.font-cards{grid-template-columns:1fr}.fmt-grid{grid-template-columns:1fr 1fr}.type-rules{grid-template-columns:1fr 1fr}.h-row{grid-template-columns:1fr;gap:10px}}
+@media (max-width:560px){.fmt-grid,.type-rules{grid-template-columns:1fr}}
+.hint{font-size:13px;color:#51091B;margin-top:14px}
+.mini-h{font-size:20px;font-weight:800;margin-top:36px}
+.use-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#2A2620;color:#E9E2D0;padding:3px 8px;border-radius:99px;margin-bottom:10px}
+.role-card li{margin-bottom:4px}
+.caps-note{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;background:#FFFFFF;border-radius:24px;padding:22px 26px;margin-top:24px}
+.caps-demo{display:flex;flex-direction:column;gap:10px;background:#E9E2D0;border-radius:16px;padding:18px 20px}
+.caps-note p{font-size:15px;line-height:1.55;max-width:620px}
+.theme-note{font-size:14px;color:#3b3533;margin:-8px 0 22px;min-height:1.5em}
+@media (max-width:900px){.roles{grid-template-columns:1fr 1fr}.caps-note{grid-template-columns:1fr}}
+@media (max-width:560px){.roles{grid-template-columns:1fr}}
+.eb{display:block;font-family:var(--body);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#51091B}
+.eb-examples{display:grid;gap:16px}
+.eb-t{display:block;font-size:22px;font-weight:800;line-height:1.1;margin-top:4px}
+.cta-examples{display:grid;gap:10px}
+.cta-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.cta-row small{font-size:12px;color:#51091B}
+.demo-link{font-family:var(--body);font-weight:600;font-size:15px;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px;text-decoration-color:#61603A}
+.do-dont{display:grid;grid-template-columns:1fr 1fr;gap:12px;font-family:var(--body)}
+.do-dont div{display:flex;flex-direction:column;gap:6px;border-radius:16px;padding:14px;background:#FFFFFF}
+.do-dont div:last-child{background:#1F2C44;color:#E9E2D0}
+.do-dont div:last-child span{text-decoration:line-through;opacity:.8}
+.do-dont b{font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.do-dont span{font-weight:600;font-size:15px}
+.ctx-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.ctx{background:#fff;border-radius:24px;padding:14px;border:1px solid rgba(1,0,1,.08)}
+.ctx-demo{border-radius:10px;padding:20px;display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:210px;justify-content:center}
+.ctx-demo .demo-btn{font-size:13px;padding:9px 14px}
+.ctx-t{font-size:22px;font-weight:800;line-height:1.05}
+.ctx p{font-size:13px;color:#3b3533;margin-top:10px;line-height:1.45}
+@media (max-width:900px){.ctx-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.ctx-grid,.do-dont{grid-template-columns:1fr}}
+.rules-bar{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 20px}
+.rb{font:600 14px var(--body);padding:9px 16px;border-radius:99px;border:1.5px solid #2A2620;background:#fff;color:#2A2620;cursor:pointer}
+.rb.on{background:#2A2620;color:#E9E2D0}
+.rgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.rc{background:#fff;border-radius:24px;border:1px solid rgba(1,0,1,.08);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .3s}
+.rc.is-no{box-shadow:0 0 0 2px #1F2C44}
+.rc.is-si{box-shadow:0 0 0 2px #61603A}
+.rc-stage{position:relative;aspect-ratio:1/1;max-width:100%;overflow:hidden}
+.rv{position:absolute;inset:0;padding:18px;display:flex;flex-direction:column;justify-content:center;gap:10px;transition:opacity .5s ease,transform .5s ease}
+.rv.no{opacity:0;transform:translateY(12px) scale(.98)}
+.rc.is-no .rv.si{opacity:0;transform:translateY(-12px) scale(.98)}
+.rc.is-no .rv.no{opacity:1;transform:none}
+.rv:after{content:"✓ Sí";position:absolute;top:10px;right:10px;font:700 11px var(--body);padding:3px 8px;border-radius:99px;background:#2A2620;color:#E9E2D0}
+.rv.no:after{content:"✕ No";background:#1F2C44;color:#E9E2D0;border:1px solid #E9E2D0}
+.rx-t{font-size:24px;font-weight:800;line-height:1.05;color:#2A2620}
+.rx-s{font-size:13px;color:#3b3533;font-family:var(--body)}
+.rx-p{font-size:14px;line-height:1.5;font-family:var(--body);color:#2A2620}
+.rx-box{align-self:flex-start;font:700 16px var(--body);padding:10px 14px;border-radius:10px;color:#2A2620}
+.rx-chip{align-self:flex-start;font:600 12px var(--body);padding:7px 12px;border-radius:99px;color:#2A2620}
+.hl,.hl-p,.hl-a,.hl-m,.hl-n{background-image:linear-gradient(var(--hlx),var(--hlx));background-repeat:no-repeat;background-size:100% 42%;background-position:0 80%;padding:0 .1em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.hl-p{--hlx:color-mix(in srgb,#61603A 58%,transparent)}
+.hl-a{--hlx:color-mix(in srgb,#864C24 58%,transparent)}
+.hl-m{--hlx:color-mix(in srgb,#1F2C44 58%,transparent)}
+.cram{gap:4px;padding:12px}
+.photo{justify-content:flex-end;align-items:center}
+.ph-person{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:52%;height:62%;border-radius:50% 50% 0 0/40% 40% 0 0}
+.ph-person:before{content:"";position:absolute;left:50%;top:-38%;transform:translateX(-50%);width:62%;aspect-ratio:1;border-radius:50%;background:inherit}
+.ph-cap{position:relative;z-index:2;background:rgba(253,245,234,.9);color:#2A2620;padding:4px 10px;border-radius:99px;font-weight:600}
+.rc-foot{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:14px 16px;border-top:1px solid rgba(1,0,1,.08);flex:1}
+.rc-txt{display:flex;flex-direction:column;gap:3px;font-size:13px;color:#3b3533;line-height:1.4}
+.rc-txt b{font-size:14px;color:#2A2620}
+.rc-txt .t-no{display:none;color:#1F2C44}
+.rc.is-no .t-si{display:none}.rc.is-no .t-no{display:inline}
+.seg{display:flex;border:1.5px solid #2A2620;border-radius:99px;overflow:hidden;flex-shrink:0}
+.seg button{font:700 12px var(--body);padding:6px 10px;border:0;background:#fff;color:#2A2620;cursor:pointer}
+.rc.is-si .seg [data-v=si]{background:#61603A;color:#E9E2D0}
+.rc.is-no .seg [data-v=no]{background:#1F2C44;color:#E9E2D0}
+.seg button:focus-visible,.rb:focus-visible{outline:3px solid #61603A;outline-offset:2px}
+@media (max-width:1000px){.rgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.rgrid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.rv{transition:none}}
+.vbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin:26px 0 14px}
+.vcombo{display:flex;flex-wrap:wrap;gap:8px}
+.vshot{display:flex;gap:6px;align-items:center;font-size:13px;font-weight:600}
+.legend{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:22px;font-size:13px;color:#3b3533;align-items:center}
+.legend .badge{margin:0 6px 0 0}
+td.td-bad{box-shadow:inset 0 0 0 2px #D92D20}
+.avoid-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.av{background:#fff;border-radius:16px;border:1px solid rgba(1,0,1,.08);overflow:hidden;position:relative;display:flex;flex-direction:column}
+.av-bad{border-color:rgba(217,45,32,.45)}
+.av-demo{padding:18px 16px;display:flex;flex-direction:column;gap:4px;min-height:92px;justify-content:center}
+.av-t{font-family:var(--display);font-weight:800;font-size:20px;line-height:1.1}
+.av-s{font-size:13px}
+.av-info{padding:10px 14px 14px;display:flex;flex-direction:column;gap:2px;font-size:12px;color:#3b3533;line-height:1.4}
+.av-info b{font-size:13px;color:#2A2620}
+.av>.badge{position:absolute;top:10px;right:10px;margin:0}
+.hl-n{--hlx:color-mix(in srgb,#2A2620 58%,transparent)}
+.sw-row{display:flex;gap:8px}.sw-row i{width:44px;height:44px;border-radius:10px;border:1px solid rgba(1,0,1,.1)}
+.photo2{align-items:center;justify-content:center;text-align:center}
+.photo2 .rx-box{align-self:center}
+.cl-logo{position:absolute;top:12px;left:12px;font:700 11px var(--body);background:#fff;color:#1f2b1a;padding:4px 8px;border-radius:6px}
+.phone-v{padding:0}
+.safe{position:absolute;left:0;right:0;top:42%;display:flex;justify-content:center}
+.safe.low{top:auto;bottom:14px}
+.ui-bar{position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(0deg,rgba(1,0,1,.55),transparent);pointer-events:none}
+.ui-bar:before{content:"";position:absolute;left:14px;bottom:14px;width:55%;height:8px;border-radius:6px;background:rgba(255,255,255,.8);box-shadow:0 -14px 0 rgba(255,255,255,.8)}
+.ui-bar:after{content:"";position:absolute;right:12px;bottom:14px;width:18px;height:60px;border-radius:6px;background:rgba(255,255,255,.8)}
+.rgrid .rc-stage{aspect-ratio:1/1}
+.hl{--hlx:color-mix(in srgb,#61603A 58%,transparent)}
+.hl.on-dark{--hlx:color-mix(in srgb,#E9E2D0 70%,transparent)}
+.hl.n{--hlx:color-mix(in srgb,#2A2620 58%,transparent)}
+.hl.a{--hlx:color-mix(in srgb,#864C24 58%,transparent)}
+.hl-sizes{display:flex;flex-wrap:wrap;gap:20px 44px;align-items:flex-end;background:#fff;border:1px solid rgba(1,0,1,.08);border-radius:24px;padding:28px;overflow-x:auto}
+.hl-size{display:flex;flex-direction:column;gap:10px}
+.hl-size .display{font-weight:800;line-height:1;letter-spacing:-.02em;white-space:nowrap}
+.hl-size small{font-size:12px;color:#51091B}
+.eq{width:100%;border-collapse:collapse;min-width:0;margin-top:0;font-size:14px}
+.eq th,.eq td{border:0;border-bottom:1px solid rgba(1,0,1,.08);height:auto;padding:10px 12px;text-align:left;border-radius:0;font-variant-numeric:tabular-nums}
+.eq th{font-size:11px}
+.hl-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;margin-top:16px}
+.hl-panel{background:#fff;border:1px solid rgba(1,0,1,.08);border-radius:24px;padding:22px}
+.hl-panel h4{font-family:var(--display);font-size:18px;margin-bottom:10px}
+.hl-bgs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.hl-bgs div{border-radius:10px;padding:14px;font-family:var(--display);font-weight:800;font-size:20px;line-height:1.1}
+.hl-bgs small{display:block;font-family:var(--body);font-weight:500;font-size:11px;margin-top:6px}
+.tip{margin-top:14px;font-size:13px;color:#3b3533;background:#E9E2D0;border-radius:10px;padding:12px 14px}
+.rad-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.rad{background:#fff;border:1px solid rgba(1,0,1,.08);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.rad-shape{height:90px;background:#61603A;border:2px solid #2A2620}
+.rad b{font-family:var(--display);font-size:20px}
+.rad .rv2{font-size:13px;font-weight:600;font-variant-numeric:tabular-nums}
+.rad p{font-size:12.5px;color:#3b3533;line-height:1.45}
+.rad-notes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.rad-notes div{background:#2A2620;color:#E9E2D0;border-radius:16px;padding:16px;font-size:14px;line-height:1.45}
+.rad-notes b{display:block;font-family:var(--display);color:#E9E2D0;font-size:16px;margin-bottom:4px}
+.pairs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pair{background:#fff;border:1px solid rgba(1,0,1,.08);border-radius:16px;padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pair>div{border-radius:10px;background:#E9E2D0;min-height:120px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:8px;padding:12px;position:relative}
+.pair>div>i{position:absolute;top:6px;right:6px;font-style:normal;font:700 10px var(--body);padding:2px 7px;border-radius:99px}
+.pair .ok>i{background:#2A2620;color:#E9E2D0}.pair .ko>i{background:#D92D20;color:#fff}
+.pair p{grid-column:1/-1;font-size:13px;color:#3b3533}
+.pair .pt{font-family:var(--display);font-weight:800;font-size:20px;line-height:1.1}
+.pb{font:600 12px var(--body);padding:7px 12px;background:#2A2620;color:#E9E2D0}
+@media (max-width:1000px){.rad-grid{grid-template-columns:repeat(3,1fr)}.pairs,.rad-notes{grid-template-columns:1fr}.hl-grid{grid-template-columns:1fr}}
+@media (max-width:560px){.rad-grid{grid-template-columns:1fr 1fr}.hl-size .display{white-space:normal}.hl-bgs{grid-template-columns:1fr}}
+.dl-btn{align-self:flex-start;display:inline-block;font:600 14px var(--body);padding:10px 16px;border-radius:999px;text-decoration:none}
+.dl-btn:hover{opacity:.85}
+.dl-btn:focus-visible{outline:3px solid #61603A;outline-offset:2px}
+.install{margin-top:16px;background:#fff;border:1px solid rgba(1,0,1,.08);border-radius:24px;padding:22px 26px;font-size:14px;line-height:1.55}
+.install>b{font-family:var(--display);font-size:18px}
+.install ol{margin:10px 0 10px 20px;display:grid;gap:4px}
+.install p{font-size:13px;color:#51091B}
+footer{padding:40px 0 60px;font-size:13px;color:var(--grey)}
+.toast{opacity:0;position:fixed;left:50%;bottom:24px;transform:translate(-50%,120px);background:var(--black);color:var(--cream);padding:10px 18px;border-radius:99px;font-weight:600;font-size:14px;transition:transform .3s;z-index:50}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:900px){
+  .swatches{grid-template-columns:repeat(6,minmax(150px,1fr));overflow-x:auto}
+  .sw{height:230px}
+  .type-grid,.rules,.web-hero{grid-template-columns:1fr}
+  .m-post,.m-flyer,.m-carousel,.m-thumb{grid-column:span 12}
+  .m-reel{grid-column:span 6}
+  .top nav{display:none}
+}
+@media (max-width:560px){
+  .m-reel{grid-column:span 12;max-width:300px;margin:0 auto;width:100%}
+  .web nav .links{display:none}
+  .shuffle{margin-left:0}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="logo"><div data-logo="118" class="nav-logo"></div><span class="brand-name">Simply Andy</span></div>
+    <nav>
+      <a href="#paleta">Paleta</a><a href="#roles">Roles</a><a href="#tipo">Tipografía</a>
+      <a href="#forma">Esquinas</a><a href="#contraste">Contraste</a><a href="#lab">En acción</a><a href="#video">Video</a><a href="#errores">Errores</a><a href="#reglas">Reglas</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- PALETA -->
+<section id="paleta">
+  <div class="wrap">
+    <div class="eyebrow">01 · Paleta</div>
+    <h2>Seis colores. Un tono.</h2>
+    <p class="lead">Seis colores con un nombre corto cada uno. Usamos siempre esos nombres para hablar de la paleta. Haz clic en un color para copiar su código HEX.</p>
+    <div class="swatches" id="swatches"></div>
+
+    <h3 class="mini-h">Cuánto se usa cada color</h3>
+    <p class="hint" style="margin-top:4px">Proporción aproximada en una pieza típica. Índigo 7%, Bordó 3%.</p>
+    <div class="ratio">
+      <div style="flex:45;background:#E9E2D0">Eggshell 45%</div>
+      <div style="flex:20;background:#2A2620;color:#E9E2D0">Tinta 20%</div>
+      <div style="flex:15;background:#61603A;color:#E9E2D0">Oliva 15%</div><div style="flex:10;background:#864C24;color:#E9E2D0">Cuero 10%</div>
+      <div style="flex:7;background:#1F2C44;color:#E9E2D0" title="Índigo 7%">7%</div>
+      <div style="flex:3;background:#51091B;color:#E9E2D0" title="Bordó 3%"></div>
+    </div>
+    <div class="ratio-note">
+      <span><b>Fondos:</b> Eggshell o Blanco.</span>
+      <span><b>Acentos:</b> Oliva o Cuero, donde quieres que miren.</span>
+      <span><b>Profundidad:</b> Índigo para bloques premium.</span>
+      <span><b>Blanco (#FFFFFF):</b> solo utilitario. Subtítulos de video y tarjetas web. No es color de marca.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ROLES -->
+<section id="roles">
+  <div class="wrap">
+    <div class="eyebrow">02 · Roles</div>
+    <h2>Cada color tiene un trabajo.</h2>
+    <div class="roles">
+      <div class="role-card"><div class="dot" style="background:#E9E2D0"></div><h3>Eggshell</h3><span class="use-tag">Fondo principal</span><p>El fondo por defecto. Da aire y no cansa la vista.</p><ul><li>Fondos de post, web y flyers</li><li>Texto claro sobre Tinta, Índigo o Oliva</li></ul></div>
+      <div class="role-card"><div class="dot" style="background:#61603A"></div><h3>Oliva</h3><span class="use-tag">Identidad y acento</span><p>El color que identifica a la marca. Siempre con texto claro encima.</p><ul><li>Como fondo oscuro: posts, carruseles, portadas e historias. Texto en Eggshell.</li><li>Como acento: botones, resaltados y la palabra clave de un subtítulo.</li><li>Como acento va sobre Eggshell. Como fondo, el acento pasa a ser Cuero o Eggshell.</li></ul></div>
+      <div class="role-card"><div class="dot" style="background:#864C24"></div><h3>Cuero</h3><span class="use-tag">Acento cálido</span><p>Aporta calidez y cercanía en dosis chicas o como segundo fondo oscuro.</p><ul><li>Cajas de subtítulo, stickers, tarjetas</li><li>Texto claro encima, nunca Tinta</li></ul></div>
+      <div class="role-card"><div class="dot" style="background:#2A2620"></div><h3>Tinta</h3><span class="use-tag">Texto y fondo oscuro</span><p>El color que ordena todo. Da contraste y un aire editorial.</p><ul><li>Color de texto principal sobre Eggshell</li><li>Fondo oscuro para reels y piezas de noche</li></ul></div>
+      <div class="role-card"><div class="dot" style="background:#1F2C44"></div><h3>Índigo</h3><span class="use-tag">Fondo premium</span><p>Da peso. Reservado para lo que tiene que sentirse de alto valor.</p><ul><li>Propuestas, precios y casos de éxito</li><li>Bloques de sección en la web</li></ul></div>
+      <div class="role-card"><div class="dot" style="background:#51091B"></div><h3>Bordó</h3><span class="use-tag">Soporte</span><p>Nunca protagonista. Solo para información secundaria.</p><ul><li>Fechas, metadatos y bordes</li><li>Texto chico solo sobre Eggshell o blanco</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPOGRAFÍA -->
+<section id="tipo">
+  <div class="wrap">
+    <div class="eyebrow">03 · Tipografía</div>
+    <h2>Dos fuentes. Nada más.</h2>
+    <p class="lead">Space Grotesk es la voz fuerte: títulos y frases cortas. Karla explica y guía: todo lo que se lee de corrido, los eyebrows y los CTAs. Las dos son gratis en Google Fonts. Si alguna no aparece en Canva, se sube desde el Brand Kit.</p>
+
+    <div class="font-cards">
+      <div class="font-card" style="background:#2A2620;color:#E9E2D0">
+        <div class="fc-top"><span class="eyebrow" style="color:#E9E2D0;opacity:.75;margin:0">Títulos</span><span class="fc-tag">Google Fonts · gratis</span></div>
+        <div class="fc-name display">Space Grotesk</div>
+        <div class="fc-spec display">Aa Bb Cc Ññ 0123</div>
+        <div class="fc-weights">
+          <span class="display" style="font-weight:400">Regular 400</span>
+          <span class="display" style="font-weight:600">SemiBold 600</span>
+          <span class="display" style="font-weight:800">ExtraBold 800</span>
+        </div>
+        <p class="fc-use">Titulares, números grandes, subtítulos de video, logo y cualquier frase corta que tenga que frenar el scroll.</p>
+        <a class="dl-btn" href="https://fonts.google.com/specimen/Space+Grotesk" target="_blank" rel="noopener" style="background:#61603A;color:#E9E2D0">Descargar Space Grotesk ↗</a>
+      </div>
+      <div class="font-card" style="background:#fff;border:1px solid rgba(1,0,1,.08)">
+        <div class="fc-top"><span class="eyebrow" style="margin:0">Texto</span><span class="fc-tag">Google Fonts · gratis</span></div>
+        <div class="fc-name" style="font-weight:700">Karla</div>
+        <div class="fc-spec" style="font-weight:500">Aa Bb Cc Ññ 0123</div>
+        <div class="fc-weights">
+          <span style="font-weight:400">Regular 400</span>
+          <span style="font-weight:500">Medium 500</span>
+          <span style="font-weight:600">SemiBold 600</span>
+          <span style="font-weight:700">Bold 700</span>
+        </div>
+        <p class="fc-use">Párrafos, captions, descripciones, eyebrows, CTAs, propuestas y todo lo que se lee más de dos líneas.</p>
+        <a class="dl-btn" href="https://fonts.google.com/specimen/Karla" target="_blank" rel="noopener" style="background:#2A2620;color:#E9E2D0">Descargar Karla ↗</a>
+      </div>
+    </div>
+
+    <div class="install">
+      <b>Cómo instalarlas</b>
+      <ol>
+        <li>Abre el enlace de cada fuente. Se abre su página en Google Fonts.</li>
+        <li>Toca <b>Get font</b> y después <b>Download all</b>. Se descarga un .zip.</li>
+        <li>Descomprime el .zip y abre la carpeta <b>static</b>. Instala los archivos .ttf con doble clic.</li>
+        <li>En Canva, si no aparecen, súbelas desde <b>Brand Kit › Fuentes</b>.</li>
+      </ol>
+      <p>Las dos fuentes son gratis y de licencia abierta (OFL). Se pueden usar en piezas comerciales y para clientes.</p>
+    </div>
+
+    <div class="caps-note">
+      <div class="caps-demo"><span style="font-family:var(--body);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:13px">Nuevo caso de éxito</span><span class="display" style="font-weight:800;text-transform:uppercase;font-size:26px;line-height:1">Cómo cobrar tu primer UGC</span></div>
+      <p><b>Las mayúsculas no son una tercera fuente.</b> Son las mismas dos fuentes escritas en mayúscula. Los eyebrows (las etiquetas chicas sobre los títulos, como “03 · TIPOGRAFÍA” en este brief) son Karla Bold con espaciado extra. Las miniaturas y portadas son Space Grotesk ExtraBold. Los dos casos están en la jerarquía de abajo.</p>
+    </div>
+
+    <h3 class="sub-h">Jerarquía con ejemplos</h3>
+    <div class="hier">
+      <div class="h-row">
+        <div class="h-meta"><b>Titular</b><span>Space Grotesk 800 · Web 56–96px · Post 90–120px · Interlineado 1.0</span></div>
+        <div class="h-ex display" style="font-size:clamp(40px,6vw,72px);font-weight:800;line-height:1;letter-spacing:-.03em">Tu marca, contada por gente real.</div>
+      </div>
+      <div class="h-row">
+        <div class="h-meta"><b>Subtítulo</b><span>Space Grotesk 800 · Web 32–48px · Post 56–72px · Interlineado 1.05</span></div>
+        <div class="h-ex display" style="font-size:clamp(28px,3.4vw,40px);font-weight:800;line-height:1.05">Así trabajamos con cada creador</div>
+      </div>
+      <div class="h-row">
+        <div class="h-meta"><b>Destacado</b><span>Space Grotesk 600 · Web 20–24px · Post 40px · Interlineado 1.2</span></div>
+        <div class="h-ex display" style="font-size:22px;font-weight:600;line-height:1.2">Primera entrega en 48 horas.</div>
+      </div>
+      <div class="h-row">
+        <div class="h-meta"><b>Texto</b><span>Karla 400 · Web 16–18px · Post 28–32px · Interlineado 1.5</span></div>
+        <div class="h-ex" style="font-size:17px;line-height:1.55;max-width:560px">Elegimos creadores que ya hablan como tu cliente. Les damos una guía clara y libertad para grabar. El resultado se siente como una recomendación de un amigo.</div>
+      </div>
+      <div class="h-row">
+        <div class="h-meta"><b>Texto secundario</b><span>Karla 400 · 13–14px · En Bordó solo sobre Eggshell o blanco</span></div>
+        <div class="h-ex" style="font-size:14px;color:#51091B">Publicado el 12 de octubre · Categoría Beauty · 3 min de lectura</div>
+      </div>
+      <div class="h-row">
+        <div class="h-meta"><b>Eyebrow</b><span>Karla 700 · Web 11–13px · Post 24–28px · Todo en mayúsculas · Espaciado +14% · Máx. 5 palabras. Va siempre arriba de un título.</span></div>
+        <div class="h-ex eb-examples">
+          <div><span class="eb">03 · Tipografía</span><span class="eb-t display">Dos fuentes. Nada más.</span></div>
+          <div><span class="eb">Caso de éxito · Beauty</span><span class="eb-t display">De 0 a 40 ventas en una semana</span></div>
+          <div><span class="eb" style="color:#2A2620">Para marcas que quieren vender</span><span class="eb-t display">Tu producto en manos reales.</span></div>
+        </div>
+      </div>
+      <div class="h-row">
+        <div class="h-meta"><b>Titular en mayúsculas</b><span>Space Grotesk 800 · Solo miniaturas de YouTube y portadas de reel · Máx. 6 palabras</span></div>
+        <div class="h-ex display" style="font-size:clamp(26px,3vw,36px);font-weight:800;line-height:1;text-transform:uppercase">Cómo <span class="hl">cobrar</span> tu primer UGC</div>
+      </div>
+      <div class="h-row">
+        <div class="h-meta"><b>CTA (llamado a la acción)</b><span>Karla 600 · Web 15–16px · Post 32–40px · Solo la primera letra en mayúscula · Verbo + qué pasa, máx. 4 palabras.</span></div>
+        <div class="h-ex cta-examples">
+          <div class="cta-row"><span class="demo-btn" style="background:#2A2620;color:#E9E2D0">Ver creadores</span><small>Principal · fondo Tinta</small></div>
+          <div class="cta-row"><span class="demo-btn" style="background:#61603A;color:#E9E2D0">Agenda una llamada</span><small>Destacado · fondo Oliva</small></div>
+          <div class="cta-row"><span class="demo-btn" style="background:transparent;color:#2A2620;border:2px solid #2A2620">Cómo trabajamos</span><small>Secundario · solo borde</small></div>
+          <div class="cta-row"><span class="demo-link">Ver todos los casos →</span><small>Enlace de texto · subrayado</small></div>
+          <div class="cta-row"><span class="demo-btn" style="background:#864C24;color:#E9E2D0">Escríbenos por DM</span><small>En posts e historias · fondo Cuero</small></div>
+        </div>
+      </div>
+      <div class="h-row">
+        <div class="h-meta"><b>Así sí y así no (CTAs)</b><span>El CTA dice exactamente qué pasa al tocarlo.</span></div>
+        <div class="h-ex do-dont">
+          <div><b>Sí</b><span>Ver creadores</span><span>Pedir cotización</span><span>Guárdalo para después</span></div>
+          <div><b>No</b><span>CLICK AQUÍ</span><span>Más info</span><span>Enviar</span></div>
+        </div>
+      </div>
+      <div class="h-row">
+        <div class="h-meta"><b>Cita o testimonio</b><span>Space Grotesk 600 · 20–28px · Comillas latinas o curvas</span></div>
+        <div class="h-ex display" style="font-size:24px;font-weight:600;line-height:1.25;max-width:600px">“Vendimos todo el stock en una semana. Nadie sintió que era un anuncio.”<span style="display:block;font-family:var(--body);font-size:13px;font-weight:500;color:#51091B;margin-top:8px;letter-spacing:0">Laura P. · Marca de skincare (testimonio de ejemplo)</span></div>
+      </div>
+      <div class="h-row">
+        <div class="h-meta"><b>Subtítulo de video</b><span>Space Grotesk 800 · 60–72px en 1080×1920 · Máx. 4 palabras por línea</span></div>
+        <div class="h-ex"><span class="vid-sub">Esto me cambió la <b>rutina</b></span></div>
+      </div>
+    </div>
+
+    <h3 class="sub-h">Eyebrow, título y CTA juntos</h3>
+    <p class="hint" style="margin:-8px 0 16px">Los tres casi siempre aparecen en este orden. Así se ven en cada lugar.</p>
+    <div class="ctx-grid">
+      <div class="ctx"><div class="ctx-demo" style="background:#E9E2D0"><span class="eb">Servicios</span><span class="display ctx-t">Videos que venden sin parecer anuncios.</span><span class="demo-btn" style="background:#2A2620;color:#E9E2D0">Ver planes</span></div>
+        <p><b>Web.</b> Eyebrow “SERVICIOS” en Bordó. CTA principal en Tinta.</p></div>
+      <div class="ctx"><div class="ctx-demo" style="background:#61603A"><span class="eb" style="color:#E9E2D0">Tip 03 · Hooks</span><span class="display ctx-t" style="color:#E9E2D0">El hook va en los primeros 2 segundos.</span><span class="demo-btn" style="background:#2A2620;color:#E9E2D0">Guárdalo para después</span></div>
+        <p><b>Post sobre Oliva.</b> Eyebrow y título en Eggshell. CTA en Tinta.</p></div>
+      <div class="ctx"><div class="ctx-demo" style="background:#2A2620;color:#E9E2D0"><span class="eb" style="color:#E9E2D0;opacity:.75">Casting abierto</span><span class="display ctx-t">Buscamos creadores de comida.</span><span class="demo-btn" style="background:#864C24;color:#E9E2D0">Escríbenos por DM</span></div>
+        <p><b>Historia sobre Tinta.</b> Eyebrow en Eggshell atenuado. CTA en Cuero.</p></div>
+      <div class="ctx"><div class="ctx-demo" style="background:#1F2C44;color:#E9E2D0"><span class="eb" style="color:#E9E2D0;opacity:.75">Propuesta · Octubre</span><span class="display ctx-t">Plan Colaboración: 4 videos al mes.</span><span class="demo-btn" style="background:#61603A;color:#E9E2D0">Aceptar propuesta</span></div>
+        <p><b>Propuesta sobre Índigo.</b> Eyebrow en Eggshell atenuado. CTA en Oliva.</p></div>
+    </div>
+
+    <h3 class="sub-h">Cómo se combinan en cada formato</h3>
+    <div class="fmt-grid">
+      <div class="fmt">
+        <div class="fmt-lbl">Post 1080 × 1080</div>
+        <div class="fmt-demo" style="background:#E9E2D0;aspect-ratio:1/1">
+          <span class="fd-tag">Tip 03</span>
+          <div class="display" style="font-weight:800;font-size:clamp(24px,2.6vw,32px);line-height:1">El hook va en los primeros 2 segundos.</div>
+          <div style="font-size:12px;line-height:1.45;color:#3b3533">Si no engancha rápido, el resto del video no existe.</div>
+        </div>
+        <ul class="fmt-list"><li>Titular: Space Grotesk 800, 90–120px</li><li>Texto: Karla 400, 28–32px</li><li>CTA: Karla 600, 32–40px</li><li>Máximo 15 palabras en total</li></ul>
+      </div>
+      <div class="fmt">
+        <div class="fmt-lbl">Reel / TikTok 1080 × 1920</div>
+        <div class="fmt-demo" style="background:linear-gradient(160deg,#f4e6d6,#dcc0a4 55%,#b3947b);aspect-ratio:1/1;align-items:center;justify-content:center;text-align:center">
+          <span class="vid-sub" style="font-size:22px">Lo probé <b>30 días</b></span>
+        </div>
+        <ul class="fmt-list"><li>Subtítulos: Space Grotesk 800, 60–72px</li><li>Una palabra clave resaltada</li><li>Ubicación: tercio medio, lejos de la UI</li></ul>
+      </div>
+      <div class="fmt">
+        <div class="fmt-lbl">Sitio web</div>
+        <div class="fmt-demo" style="background:#E9E2D0;aspect-ratio:1/1">
+          <span style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#51091B">Servicios</span>
+          <div class="display" style="font-weight:800;font-size:clamp(22px,2.3vw,28px);line-height:1.02">Videos que venden sin parecer anuncios.</div>
+          <div style="font-size:12px;line-height:1.45;color:#3b3533">Creadores seleccionados, guiones y edición.</div>
+          <span class="demo-btn" style="background:#2A2620;color:#E9E2D0;font-size:11px;padding:7px 12px;align-self:flex-start">Ver planes</span>
+        </div>
+        <ul class="fmt-list"><li>H1: Space Grotesk 800, 56–96px</li><li>Párrafos: Karla 400, 17px</li><li>Eyebrow 700 y CTA 600, 15px</li><li>Ancho de texto: máx. 65 caracteres</li></ul>
+      </div>
+      <div class="fmt">
+        <div class="fmt-lbl">Flyer A5 impreso</div>
+        <div class="fmt-demo" style="background:#1F2C44;color:#E9E2D0;aspect-ratio:1/1">
+          <div class="display" style="font-weight:800;font-size:clamp(24px,2.6vw,32px);line-height:1">Contenido en manos <span class="hl">reales.</span></div>
+          <div style="font-size:12px;line-height:1.45;opacity:.85">UGC para reseñas, unboxing y rutinas.</div>
+          <span style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#E9E2D0;opacity:.75">simplyandy.com</span>
+        </div>
+        <ul class="fmt-list"><li>Titular: Space Grotesk 800, 36–48pt</li><li>Texto: Karla 400, 10–11pt</li><li>Eyebrow: Karla 700, 8pt</li><li>CTA: Karla 600, 11pt</li></ul>
+      </div>
+    </div>
+
+    <div class="type-rules">
+      <div><b>Máximo 3 tamaños por pieza.</b> Eyebrow, titular y texto alcanzan. El CTA usa el tamaño del texto.</div>
+      <div><b>Titulares cortos.</b> Una idea por frase, idealmente menos de 8 palabras.</div>
+      <div><b>Alineado a la izquierda.</b> Centrado solo en subtítulos de video y portadas.</div>
+      <div><b>Mayúsculas con moderación.</b> Solo en eyebrows y miniaturas. Nunca en CTAs. Nunca en párrafos.</div>
+      <div><b>Sin cursivas ni subrayados.</b> Para destacar se usa el resaltado de color.</div>
+      <div><b>No mezclar con otras fuentes.</b> Si falta una, se usa Arial como respaldo.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ESQUINAS -->
+<section id="forma">
+  <div class="wrap">
+    <div class="eyebrow">04 · Esquinas y resaltados</div>
+    <h2>Esquinas suaves, siempre iguales.</h2>
+    <p class="lead">Todas las piezas usan las mismas esquinas redondeadas. Así la marca se reconoce aunque cambie el color. Hay dos reglas: una para resaltar palabras y una escala para cajas, botones y tarjetas.</p>
+
+    <h3 class="sub-h">El resaltado</h3>
+    <p class="hint" style="margin:-8px 0 16px;max-width:680px">Para destacar una palabra se pasa un trazo de color por debajo, como un resaltador real, dejando la letra con su color normal encima. Nunca subrayado, nunca negrita extra, nunca un fondo sólido que tape la palabra: el trazo cubre solo la parte baja de la letra.</p>
+    <div class="hl-sizes">
+      <div class="hl-size"><span class="display" style="font-size:24px">Ventas <span class="hl">reales</span></span><small>Letra 24px</small></div>
+      <div class="hl-size"><span class="display" style="font-size:48px">Ventas <span class="hl">reales</span></span><small>Letra 48px</small></div>
+      <div class="hl-size"><span class="display" style="font-size:clamp(44px,6vw,72px)">Ventas <span class="hl">reales</span></span><small>Letra 72px</small></div>
+    </div>
+    <div class="hl-grid">
+      <div class="hl-panel">
+        <h4>Cómo se arma</h4>
+        <table class="eq">
+          <tr><th>Dónde</th><th>Tamaño de letra</th><th>Grosor del trazo</th></tr>
+          <tr><td>Texto web</td><td>16px</td><td>42% de la línea</td></tr>
+          <tr><td>Destacado web</td><td>24px</td><td>42% de la línea</td></tr>
+          <tr><td>Titular web</td><td>72px</td><td>42% de la línea</td></tr>
+          <tr><td>Subtítulo de video</td><td>64px</td><td>42% de la línea</td></tr>
+          <tr><td>Titular de post 1080</td><td>110px</td><td>42% de la línea</td></tr>
+        </table>
+      </div>
+      <div class="hl-panel">
+        <h4>Color del resaltado según el fondo</h4>
+        <div class="hl-bgs">
+          <div style="background:#E9E2D0">Ventas <span class="hl">reales</span><small>Sobre Eggshell: Oliva</small></div>
+          <div style="background:#2A2620;color:#E9E2D0">Ventas <span class="hl">reales</span><small>Sobre Tinta: Oliva</small></div>
+          <div style="background:#61603A;color:#E9E2D0">Ventas <span class="hl n">reales</span><small>Sobre Oliva: Eggshell</small></div>
+          <div style="background:#1F2C44;color:#E9E2D0">Ventas <span class="hl">reales</span><small>Sobre Índigo: Oliva</small></div>
+        </div>
+        <p class="tip"><b>En Canva:</b> selecciona la palabra, ve a Efectos y elige Sombra o Fondo con imagen para simular el trazo, posicionado solo en la parte baja de la letra, nunca cubriéndola entera.</p>
+      </div>
+    </div>
+
+    <h3 class="sub-h">Escala de esquinas</h3>
+    <p class="hint" style="margin:-8px 0 16px">Cinco medidas y ninguna más. El primer valor es para web. El segundo es para posts e historias de 1080px, que se ven a la mitad de tamaño en el teléfono.</p>
+    <div class="rad-grid">
+      <div class="rad"><div class="rad-shape" style="border-radius:6px"></div><b>XS</b><span class="rv2">6px · post 12px</span><p>Muestras de color, casillas y miniaturas muy chicas.</p></div>
+      <div class="rad"><div class="rad-shape" style="border-radius:10px"></div><b>S</b><span class="rv2">10px · post 20px</span><p>Cajas de subtítulo, rótulos, testimonios y campos de formulario.</p></div>
+      <div class="rad"><div class="rad-shape" style="border-radius:16px"></div><b>M</b><span class="rv2">16px · post 32px</span><p>Tarjetas, fotos y miniaturas en la web.</p></div>
+      <div class="rad"><div class="rad-shape" style="border-radius:24px"></div><b>L</b><span class="rv2">24px · post 48px</span><p>Paneles grandes y bloques de color en la web.</p></div>
+      <div class="rad"><div class="rad-shape" style="border-radius:999px"></div><b>Pill</b><span class="rv2">Completo · 999px</span><p>Botones (CTAs), chips y etiquetas de categoría.</p></div>
+    </div>
+    <div class="rad-notes">
+      <div><b>Una caja dentro de otra</b>La de adentro baja un paso. Tarjeta M con foto S adentro.</div>
+      <div><b>Botones siempre Pill</b>Todos los CTAs son redondos en los extremos. Nunca cuadrados.</div>
+      <div><b>Sin esquinas rectas</b>Salvo la foto que ocupa toda la pieza, todo lleva esquina.</div>
+    </div>
+
+    <h3 class="sub-h">Así sí y así no</h3>
+    <div class="pairs">
+      <div class="pair"><div class="ok"><i>✓ Sí</i><span class="pt">Ventas <span class="hl">reales</span></span></div><div class="ko"><i>✕ No</i><span class="pt">Ventas <span style="background:#61603A;color:#E9E2D0;padding:0 .12em;border-radius:.12em">reales</span></span></div><p>Trazo bajo la letra, con su color normal encima. Un fondo sólido tapando la palabra entera es el resaltado de otra marca, no el nuestro.</p></div>
+      <div class="pair"><div class="ok"><i>✓ Sí</i><span class="pb" style="border-radius:999px">Ver creadores</span></div><div class="ko"><i>✕ No</i><span class="pb" style="border-radius:0">Ver creadores</span></div><p>Botón Pill. Un botón cuadrado parece de otra marca.</p></div>
+      <div class="pair"><div class="ok"><i>✓ Sí</i><span style="display:flex;gap:6px"><span style="width:44px;height:44px;background:#61603A;border-radius:10px"></span><span style="width:44px;height:44px;background:#864C24;border-radius:10px"></span></span></div><div class="ko"><i>✕ No</i><span style="display:flex;gap:6px"><span style="width:44px;height:44px;background:#61603A;border-radius:2px"></span><span style="width:44px;height:44px;background:#864C24;border-radius:22px"></span></span></div><p>Elementos del mismo tipo con la misma esquina. Mezclar medidas se ve descuidado.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTRASTE -->
+<section id="contraste">
+  <div class="wrap">
+    <div class="eyebrow">05 · Contraste</div>
+    <h2>Qué texto va sobre qué fondo.</h2>
+    <p class="lead">Cada celda muestra texto de un color (fila) sobre el fondo de otro (columna). Incluye el Blanco porque lo usamos en subtítulos y tarjetas web. Calculado con el estándar de accesibilidad WCAG.</p>
+    <div class="legend">
+      <span><i class="badge b-ok">AAA</i> Se lee perfecto</span>
+      <span><i class="badge b-ok">AA</i> Se puede usar en cualquier tamaño</span>
+      <span><i class="badge b-big">Solo títulos</i> Solo en 24px o más</span>
+      <span><i class="badge b-bad">✕ Evitar</i> No se lee bien</span>
+      <span class="hint" style="margin:0">El rojo y el amarillo solo se usan en este brief para marcar errores. No son colores de marca.</span>
+    </div>
+    <div class="matrix"><table id="matrix"></table></div>
+
+    <h3 class="sub-h">Combinaciones a evitar</h3>
+    <p class="hint" style="margin:-8px 0 16px">Todas las combinaciones de la paleta que no pasan el mínimo. Si una pieza tiene alguna de estas, hay que cambiarla.</p>
+    <div class="avoid-grid" id="avoidGrid"></div>
+
+    <h3 class="sub-h">Solo para títulos grandes</h3>
+    <p class="hint" style="margin:-8px 0 16px">Se leen en tamaño grande, pero no sirven para párrafos, captions ni etiquetas.</p>
+    <div class="avoid-grid" id="bigGrid"></div>
+  </div>
+</section>
+
+<!-- LAB -->
+<section id="lab">
+  <div class="wrap">
+    <div class="eyebrow">06 · En acción</div>
+    <h2>Cambia el tema, mira todo.</h2>
+    <p class="lead">Cuatro combinaciones de color listas para usar. Elige una y todas las piezas cambian a la vez. El nombre y el titular se editan al inicio de la página. Las cifras y los nombres son de ejemplo.</p>
+    <div class="lab-bar" id="themeBar">
+      <button class="shuffle" id="shuffle">Rotar tema</button>
+    </div>
+    <p class="theme-note" id="themeNote"></p>
+
+    <div class="lab">
+      <!-- WEB -->
+      <div class="mock m-web">
+        <div class="lbl"><span>Sitio web · Hero</span><span>1440 × 900</span></div>
+        <div class="browser">
+          <div class="chrome"><b></b><b></b><b></b><span class="url">simplyandy.com</span></div>
+          <div class="canvas web t">
+            <nav><div class="logo" style="font-size:18px"><div data-logo="108" class="lab-logo"></div></div>
+              <div class="links"><a>Creadores</a><a>Casos</a><a>Precios</a></div>
+              <a class="btn acc t" style="padding:8px 14px">Hablemos</a></nav>
+            <div class="web-hero">
+              <div>
+                <h3 class="display headline-web">Contenido real, <em class="t">sin filtro.</em></h3>
+                <p>Conectamos marcas con creadores que hablan como tu cliente. Videos que se sienten recomendación, no publicidad.</p>
+                <div class="cta"><a class="btn pri t">Ver creadores</a><a class="btn sec t">Cómo trabajamos</a></div>
+              </div>
+              <div class="cards">
+                <div class="ccard t"><span class="chip t">Beauty</span><div class="creator"><div class="head t"></div><div class="body t"></div></div></div>
+                <div class="ccard t"><span class="chip t">Food</span><div class="creator"><div class="head t"></div><div class="body t"></div></div></div>
+              </div>
+            </div>
+            <div class="stats t">
+              <div class="t"><b>+120</b><span>creadores activos</span></div>
+              <div class="t"><b>3.4x</b><span>ROAS promedio</span></div>
+              <div class="t"><b>48h</b><span>primera entrega</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- POST -->
+      <div class="mock m-post">
+        <div class="lbl"><span>Post Instagram</span><span>1080 × 1080</span></div>
+        <div class="canvas post t">
+          <div class="blob t"></div>
+          <div class="creator"><div class="head t"></div><div class="body t"></div></div>
+          <span class="tag t">Nuevo caso</span>
+          <h3 class="display headline">Contenido real, sin filtro.</h3>
+          <div class="foot"><span class="handle-txt">@__simplyandy</span><span>01/05</span></div>
+        </div>
+        <div class="ig-meta"><b>♡ 2.418</b><span>·</span><span>Guardar para después</span></div>
+      </div>
+
+      <!-- REEL -->
+      <div class="mock m-reel">
+        <div class="lbl"><span>Reel / TikTok</span><span>9:16</span></div>
+        <div class="phone">
+          <div class="canvas t">
+            <div class="reel-top"><span class="pill t">UGC</span><span>0:12</span></div>
+            <div class="creator"><div class="head t"></div><div class="body t"></div></div>
+            <div class="caption" id="caption"></div>
+            <div class="side"><b></b><b></b><b></b></div>
+            <div class="handle t handle-txt">@__simplyandy</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FLYER -->
+      <div class="mock m-flyer">
+        <div class="lbl"><span>Flyer</span><span>A5</span></div>
+        <div class="canvas flyer t">
+          <div class="kicker t">Para marcas que quieren vender</div>
+          <h3 class="display">Tu producto en manos <em class="t">reales.</em></h3>
+          <ul>
+            <li>Videos UGC para ads</li><li>Unboxing y reseñas</li><li>Testimonios en cámara</li><li>Guiones y hooks</li>
+          </ul>
+          <div class="bottom t"><div><b class="brand-name">Simply Andy</b><br><span class="handle-txt">@__simplyandy</span></div><div class="qr t"></div></div>
+        </div>
+      </div>
+
+      <!-- CARRUSEL -->
+      <div class="mock m-carousel">
+        <div class="lbl"><span>Carrusel educativo</span><span>1080 × 1350</span></div>
+        <div class="slides">
+          <div class="slide s1 t"><span style="font-weight:700">Guía rápida</span><h4>3 errores que matan tu anuncio UGC</h4><span>Desliza →</span></div>
+          <div class="slide s2 t"><span class="n">01</span><h4>El hook tarda más de 2 segundos</h4><span style="font-size:11px">El scroll no espera.</span></div>
+          <div class="slide s3 t"><span class="n">02</span><h4>El creador lee un guion</h4><span style="font-size:11px">Se nota. Y se pierde la confianza.</span></div>
+        </div>
+        <div class="dots"><b></b><b></b><b></b><b></b><b></b></div>
+      </div>
+
+      <!-- THUMB -->
+      <div class="mock m-thumb">
+        <div class="lbl"><span>Miniatura YouTube</span><span>1280 × 720</span></div>
+        <div class="canvas thumb t">
+          <div class="creator"><div class="head t"></div><div class="body t"></div></div>
+          <h3 class="display">Cómo <em class="t">cobrar</em> tu primer UGC</h3>
+          <span class="time">12:48</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section id="video">
+  <div class="wrap">
+    <div class="eyebrow">07 · Video</div>
+    <h2>Movimiento con la misma voz.</h2>
+    <p class="lead">En video la paleta aparece en capas: subtítulos, rótulos, transiciones y cierre. Hay cinco combinaciones. Elige una por video y no la cambies a mitad. Estas combinaciones son para el contenido propio de la marca.</p>
+    <div class="vbar">
+      <div class="vcombo" id="vCombos"></div>
+      <div class="vshot"><span>Toma:</span><button type="button" class="rb on" data-shot="light">Clara</button><button type="button" class="rb" data-shot="dark">Oscura</button></div>
+    </div>
+    <p class="theme-note" id="vNote"></p>
+    <div class="vid-grid" id="vidGrid">
+      <div class="vcard"><div class="stage"><div class="sub1">Esto me cambió<br>la <b>rutina</b></div></div><div class="info"><h3>Subtítulo dinámico</h3><p data-vtxt="sub"></p></div></div>
+      <div class="vcard"><div class="stage"><div class="sub2">“Lo probé 30 días y te cuento”</div></div><div class="info"><h3>Subtítulo en caja</h3><p data-vtxt="box"></p></div></div>
+      <div class="vcard"><div class="stage"><div class="lower"><b>Sofía M.</b><span>Creadora · Beauty</span></div></div><div class="info"><h3>Rótulo (lower third)</h3><p data-vtxt="lt"></p></div></div>
+      <div class="vcard"><div class="stage" style="overflow:hidden"><div class="wipe"><i></i><i></i><i></i><i></i></div></div><div class="info"><h3>Transición en barras</h3><p data-vtxt="wipe"></p></div></div>
+      <div class="vcard"><div class="stage endstage"><div class="endcard"><span class="brand-name">Simply Andy</span><small class="handle-txt">@__simplyandy</small></div></div><div class="info"><h3>Cierre de marca</h3><p data-vtxt="end"></p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COLORES: ERRORES -->
+<section id="errores">
+  <div class="wrap">
+    <div class="eyebrow">08 · Errores de color</div>
+    <h2>Cómo no usar los colores.</h2>
+    <p class="lead">Los doce errores más comunes con esta paleta. Cada tarjeta arranca en el error. Haz clic en Sí para ver cómo se corrige, o deja que alternen solas.</p>
+    <div class="rgroup" data-start="no">
+      <div class="rules-bar">
+        <button type="button" class="rb" data-all="si">Ver las correcciones</button>
+        <button type="button" class="rb" data-all="no">Ver los errores</button>
+        <button type="button" class="rb on" data-auto>Alternar solas</button>
+      </div>
+      <div class="rgrid">
+      <div class="rc">
+        <div class="rc-stage"><div class="rv si" style="background:#E9E2D0"><div class="rx-t display" style="">Contenido <span class="hl-p">real</span>.</div><div class="rx-s" style="">Un acento guía la mirada.</div></div><div class="rv no" style="background:#E9E2D0"><div class="rx-t display" style=""><span class="hl-p">Contenido</span> <span class="hl-a">real</span><span style="color:#1F2C44">.</span></div><div class="rx-s" style=""><span class="hl-p">Un</span> <span class="hl-a">montón</span> de <span class="hl-m">acentos</span>.</div></div></div>
+        <div class="rc-foot"><div class="rc-txt"><b>Un solo acento por pieza</b><span class="t-si">Oliva o Cuero. No los dos.</span><span class="t-no">Tres acentos compiten y nada destaca.</span></div><div class="seg"><button type="button" data-v="si">Sí</button><button type="button" data-v="no">No</button></div></div>
+      </div>
+      <div class="rc">
+        <div class="rc-stage"><div class="rv si" style="background:#61603A"><span class="eb" style="color:#E9E2D0">Tip 03</span><div class="rx-t display" style="color:#E9E2D0">El hook va primero.</div><div class="rx-s" style="color:#E9E2D0">Texto Eggshell sobre Oliva.</div></div><div class="rv no" style="background:#61603A"><span class="eb" style="color:#51091B">Tip 03</span><div class="rx-t display" style="color:#51091B">El hook va primero.</div><div class="rx-s" style="color:#51091B">Bordó sobre Oliva. No se lee.</div></div></div>
+        <div class="rc-foot"><div class="rc-txt"><b>Bordó sobre color</b><span class="t-si">Sobre Oliva el texto va en Eggshell.</span><span class="t-no">El Bordó se lava sobre cualquier acento oscuro.</span></div><div class="seg"><button type="button" data-v="si">Sí</button><button type="button" data-v="no">No</button></div></div>
+      </div>
+      <div class="rc">
+        <div class="rc-stage"><div class="rv si" style="background:#1F2C44"><span class="eb" style="color:#E9E2D0">Propuesta</span><div class="rx-t display" style="color:#E9E2D0">Plan Colaboración</div><div class="rx-s" style="color:#E9E2D0">Texto claro sobre Índigo.</div></div><div class="rv no" style="background:#1F2C44"><span class="eb" style="color:#2A2620">Propuesta</span><div class="rx-t display" style="color:#2A2620">Plan Colaboración</div><div class="rx-s" style="color:#2A2620">Tinta sobre Índigo.</div></div></div>
+        <div class="rc-foot"><div class="rc-txt"><b>Tinta sobre Índigo</b><span class="t-si">Sobre Índigo el texto va en Eggshell.</span><span class="t-no">Tinta sobre Índigo se funde.</span></div><div class="seg"><button type="button" data-v="si">Sí</button><button type="button" data-v="no">No</button></div></div>
+      </div>
+      <div class="rc">
+        <div class="rc-stage"><div class="rv si" style="background:#E9E2D0"><div class="rx-t display" style="">Ventas <span class="hl-p">reales</span>.</div><div class="rx-s" style="">Resaltado de fondo.</div></div><div class="rv no" style="background:#E9E2D0"><div class="rx-t display" style="color:#61603A">Ventas reales.</div><div class="rx-s" style="">Texto suelto, sin relleno.</div></div></div>
+        <div class="rc-foot"><div class="rc-txt"><b>Oliva como texto suelto</b><span class="t-si">Oliva como resaltado, con texto Eggshell encima.</span><span class="t-no">Sin el relleno se pierde el efecto de marca.</span></div><div class="seg"><button type="button" data-v="si">Sí</button><button type="button" data-v="no">No</button></div></div>
+      </div>
+      <div class="rc">
+        <div class="rc-stage"><div class="rv si" style="background:#E9E2D0"><div class="rx-box" style="background:#864C24;color:#E9E2D0">“Lo probé 30 días”</div><div class="rx-s" style="">Cuero en una caja.</div></div><div class="rv no" style="background:#864C24"><div class="rx-box" style="background:#864C24;color:#2A2620;border:1px solid rgba(1,0,1,.1)">“Lo probé 30 días”</div><div class="rx-s" style="color:#2A2620">Todo Cuero.</div></div></div>
+        <div class="rc-foot"><div class="rc-txt"><b>Cuero como fondo completo</b><span class="t-si">Cuero en cajas y detalles, sobre Eggshell.</span><span class="t-no">De fondo completo aplana todo.</span></div><div class="seg"><button type="button" data-v="si">Sí</button><button type="button" data-v="no">No</button></div></div>
+      </div>
+      <div class="rc">
+        <div class="rc-stage"><div class="rv si" style="background:#61603A"><div class="rx-t display" style="color:#E9E2D0">Casting <span class="hl-n">abierto</span></div><div class="rx-chip" style="background:#2A2620;color:#E9E2D0">Escríbenos</div></div><div class="rv no" style="background:#61603A"><div class="rx-t display" style="color:#61603A">Casting <span style="background:#61603A;color:#61603A">abierto</span></div><div class="rx-chip" style="background:#61603A;color:#61603A">Escríbenos</div></div></div>
+        <div class="rc-foot"><div class="rc-txt"><b>Oliva en todo</b><span class="t-si">Si el fondo es Oliva, el acento es Eggshell o Tinta.</span><span class="t-no">Botón y resaltado del mismo color que el fondo desaparecen.</span></div><div class="seg"><button type="button" data-v="si">Sí</button><button type="button" data-v="no">No</button></div></div>
+      </div>
+      <div class="rc">
+        <div class="rc-stage"><div class="rv si" style="background:#864C24"><div class="rx-t display" style="color:#E9E2D0">Nuevo caso</div><div class="rx-chip" style="background:#61603A;color:#E9E2D0">Ver caso</div><div class="rx-s" style="color:#E9E2D0">El Eggshell ancla la pieza.</div></div><div class="rv no" style="background:#864C24"><div class="rx-t display" style="color:#61603A">Nuevo caso</div><div class="rx-chip" style="background:#61603A;color:#864C24">Ver caso</div><div class="rx-s" style="color:#61603A">Sin Eggshell que ordene.</div></div></div>
+        <div class="rc-foot"><div class="rc-txt"><b>Oliva y Cuero solos</b><span class="t-si">Siempre con Eggshell para ordenar.</span><span class="t-no">Dos acentos oscuros juntos sin Eggshell se ven confusos.</span></div><div class="seg"><button type="button" data-v="si">Sí</button><button type="button" data-v="no">No</button></div></div>
+      </div>
+      <div class="rc">
+        <div class="rc-stage"><div class="rv si" style="background:#2A2620"><div class="rx-t display" style="color:#E9E2D0">Casting abierto</div><div class="rx-chip" style="background:#61603A;color:#E9E2D0">Escríbenos por DM</div></div><div class="rv no" style="background:linear-gradient(120deg,#61603A,#864C24 45%,#1F2C44)"><div class="rx-t display" style="color:#E9E2D0">Casting abierto</div><div class="rx-chip" style="background:#E9E2D0;color:#2A2620">Escríbenos por DM</div></div></div>
+        <div class="rc-foot"><div class="rc-txt"><b>Colores planos</b><span class="t-si">Un fondo sólido por pieza.</span><span class="t-no">Degradados que mezclan la paleta se ven baratos.</span></div><div class="seg"><button type="button" data-v="si">Sí</button><button type="button" data-v="no">No</button></div></div>
+      </div>
+      <div class="rc">
+        <div class="rc-stage"><div class="rv si" style="background:#E9E2D0"><div class="rx-t display" style="">Oferta de lanzamiento</div><div class="rx-chip" style="background:#2A2620;color:#E9E2D0">Pedir cotización</div></div><div class="rv no" style="background:#E9E2D0"><div class="rx-t display" style="color:#1E6BE6">Oferta de lanzamiento</div><div class="rx-chip" style="background:#E53935;color:#fff">Pedir cotización</div></div></div>
+        <div class="rc-foot"><div class="rc-txt"><b>Colores inventados</b><span class="t-si">Solo los seis HEX de la paleta.</span><span class="t-no">Un rojo o un azul "porque sí" rompen la marca.</span></div><div class="seg"><button type="button" data-v="si">Sí</button><button type="button" data-v="no">No</button></div></div>
+      </div>
+      <div class="rc">
+        <div class="rc-stage"><div class="rv si" style="background:#E9E2D0"><div class="sw-row"><i style="background:#61603A"></i><i style="background:#864C24"></i><i style="background:#1F2C44"></i></div><div class="rx-s" style="">#61603A · #864C24 · #1F2C44</div></div><div class="rv no" style="background:#E9E2D0"><div class="sw-row"><i style="background:#9B7BF7"></i><i style="background:#F7B27A"></i><i style="background:#5A1A12"></i></div><div class="rx-s" style="">Más saturados. Ya no son la marca.</div></div></div>
+        <div class="rc-foot"><div class="rc-txt"><b>Variaciones de tono</b><span class="t-si">Los HEX exactos, sin ajustar saturación.</span><span class="t-no">Un Oliva más saturado ya es otro color.</span></div><div class="seg"><button type="button" data-v="si">Sí</button><button type="button" data-v="no">No</button></div></div>
+      </div>
+      <div class="rc">
+        <div class="rc-stage"><div class="rv si photo2" style="background:linear-gradient(160deg,#f3cfa9,#b98563 60%,#6b3f2a)"><div class="rx-box" style="background:#61603A;color:#E9E2D0">Nuevo video</div></div><div class="rv no photo2" style="background:linear-gradient(160deg,#f3cfa9,#b98563 60%,#6b3f2a)"><div class="rx-box" style="background:rgba(97,96,58,.4);color:rgba(97,96,58,.9)">Nuevo video</div></div></div>
+        <div class="rc-foot"><div class="rc-txt"><b>Transparencias</b><span class="t-si">Colores sólidos, al 100%.</span><span class="t-no">Oliva al 40% sobre una foto se ve sucio.</span></div><div class="seg"><button type="button" data-v="si">Sí</button><button type="button" data-v="no">No</button></div></div>
+      </div>
+      <div class="rc">
+        <div class="rc-stage"><div class="rv si photo2" style="background:linear-gradient(160deg,#dfe9d8,#9fb694 60%,#4f6446)"><div class="cl-logo">Marca del brief</div><div class="rx-box" style="background:#fff">Me encantó la textura</div></div><div class="rv no photo2" style="background:linear-gradient(160deg,#dfe9d8,#9fb694 60%,#4f6446)"><div class="cl-logo" style="background:#61603A;color:#E9E2D0">Simply Andy</div><div class="rx-box" style="background:#1F2C44;color:#E9E2D0">Me encantó la textura</div></div></div>
+        <div class="rc-foot"><div class="rc-txt"><b>Nuestra paleta en piezas de marca</b><span class="t-si">En videos para colaboraciones: subtítulos neutros o los colores de la marca.</span><span class="t-no">La marca del brief no se tapa con la nuestra.</span></div><div class="seg"><button type="button" data-v="si">Sí</button><button type="button" data-v="no">No</button></div></div>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGLAS -->
+<section id="reglas">
+  <div class="wrap">
+    <div class="eyebrow">09 · Reglas generales</div>
+    <h2>Lo que sí. Lo que no.</h2>
+    <p class="lead">Reglas de fotos, espacio y texto. Cada tarjeta muestra la forma correcta y el error más común. Haz clic en Sí o No para fijar una.</p>
+    <div class="rgroup" data-start="si">
+      <div class="rules-bar">
+        <button type="button" class="rb" data-all="si">Ver todo lo correcto</button>
+        <button type="button" class="rb" data-all="no">Ver todos los errores</button>
+        <button type="button" class="rb on" data-auto>Alternar solas</button>
+      </div>
+      <div class="rgrid">
+      <div class="rc">
+        <div class="rc-stage"><div class="rv si photo" style="background:linear-gradient(160deg,#f3cfa9,#b98563 60%,#6b3f2a)"><div class="ph-person" style="background:#3a2016"></div><div class="rx-s ph-cap">Luz cálida y natural</div></div><div class="rv no photo" style="background:linear-gradient(160deg,#b9d3ea,#6f8fb0 60%,#2e3f58)"><div class="ph-person" style="background:#1d2a3d"></div><div class="rx-s ph-cap">Filtro frío y azulado</div></div></div>
+        <div class="rc-foot"><div class="rc-txt"><b>Fotos de creadores</b><span class="t-si">Luz de ventana, tonos de piel cálidos.</span><span class="t-no">Filtros fríos chocan con la paleta.</span></div><div class="seg"><button type="button" data-v="si">Sí</button><button type="button" data-v="no">No</button></div></div>
+      </div>
+      <div class="rc">
+        <div class="rc-stage"><div class="rv si" style="background:#E9E2D0"><span class="eb" style="color:#51091B">Servicios</span><div class="rx-t display" style="">Videos que venden.</div><div class="rx-chip" style="background:#2A2620;color:#E9E2D0">Ver planes</div></div><div class="rv no cram" style="background:#E9E2D0"><span class="eb" style="color:#51091B">Servicios · UGC · Ads · Reels · TikTok</span><div class="rx-t display" style="font-size:16px">Videos que venden, reseñas, unboxing, testimonios y mucho más</div><div class="rx-s" style="">Precios · Envíos · Garantía · Soporte 24/7</div><div style="display:flex;gap:4px;flex-wrap:wrap"><div class="rx-chip" style="background:#2A2620;color:#E9E2D0">Ver planes</div><div class="rx-chip" style="background:#61603A;color:#E9E2D0">Contacto</div><div class="rx-chip" style="background:#864C24;color:#E9E2D0">Más</div></div></div></div>
+        <div class="rc-foot"><div class="rc-txt"><b>Mucho espacio vacío</b><span class="t-si">Una idea y un CTA por pieza.</span><span class="t-no">Llenar cada rincón hace que nada se lea.</span></div><div class="seg"><button type="button" data-v="si">Sí</button><button type="button" data-v="no">No</button></div></div>
+      </div>
+      <div class="rc">
+        <div class="rc-stage"><div class="rv si" style="background:#E9E2D0"><div class="rx-p">Elegimos creadores que ya hablan como tu cliente. Les damos una guía clara y libertad para grabar.</div></div><div class="rv no" style="background:#864C24"><div class="rx-p" style="color:#51091B;font-size:11px">Elegimos creadores que ya hablan como tu cliente. Les damos una guía clara y libertad para grabar.</div></div></div>
+        <div class="rc-foot"><div class="rc-txt"><b>Texto largo legible</b><span class="t-si">Tinta sobre Eggshell, tamaño cómodo.</span><span class="t-no">Bordó chico sobre Cuero cuesta leerlo.</span></div><div class="seg"><button type="button" data-v="si">Sí</button><button type="button" data-v="no">No</button></div></div>
+      </div>
+      <div class="rc">
+        <div class="rc-stage"><div class="rv si photo2" style="background:linear-gradient(160deg,#f3cfa9,#b98563 60%,#6b3f2a)"><div class="rx-box" style="background:#2A2620;color:#E9E2D0">Mi rutina de 5 minutos</div></div><div class="rv no photo2" style="background:repeating-linear-gradient(45deg,#e9c9a6 0 8px,#b98563 8px 16px,#f5e1cc 16px 22px)"><div class="rx-t display" style="color:#fff">Mi rutina de 5 minutos</div></div></div>
+        <div class="rc-foot"><div class="rc-txt"><b>Texto sobre fotos</b><span class="t-si">Con caja de color o sobre una zona lisa.</span><span class="t-no">Texto directo sobre una foto con detalle se pierde.</span></div><div class="seg"><button type="button" data-v="si">Sí</button><button type="button" data-v="no">No</button></div></div>
+      </div>
+      <div class="rc">
+        <div class="rc-stage"><div class="rv si phone-v" style="background:linear-gradient(180deg,#e9d3bf,#a57c60)"><div class="safe"><span class="vid-sub" style="font-size:15px">Lo probé <b>30 días</b></span></div><div class="ui-bar"></div></div><div class="rv no phone-v" style="background:linear-gradient(180deg,#e9d3bf,#a57c60)"><div class="safe low"><span class="vid-sub" style="font-size:15px">Lo probé <b>30 días</b></span></div><div class="ui-bar"></div></div></div>
+        <div class="rc-foot"><div class="rc-txt"><b>Subtítulos en zona segura</b><span class="t-si">En el tercio medio, lejos de botones y descripción.</span><span class="t-no">Abajo del todo los tapa la interfaz de TikTok.</span></div><div class="seg"><button type="button" data-v="si">Sí</button><button type="button" data-v="no">No</button></div></div>
+      </div>
+      <div class="rc">
+        <div class="rc-stage"><div class="rv si" style="background:#E9E2D0"><div class="rx-t display" style="font-size:20px">¿Buscas contenido real?</div><div class="rx-chip" style="background:#2A2620;color:#E9E2D0">Trabajemos juntos</div></div><div class="rv no" style="background:#E9E2D0"><div class="rx-t display" style="font-size:20px">¿Buscas contenido real?</div><div style="display:flex;gap:4px;flex-wrap:wrap"><div class="rx-chip" style="background:#2A2620;color:#E9E2D0">Trabajemos juntos</div><div class="rx-chip" style="background:#61603A;color:#E9E2D0">Ver casos</div><div class="rx-chip" style="background:#864C24;color:#E9E2D0">Seguir</div><div class="rx-chip" style="background:#E9E2D0;color:#2A2620">Llamar</div></div></div></div>
+        <div class="rc-foot"><div class="rc-txt"><b>Un solo CTA</b><span class="t-si">Una acción clara por pieza.</span><span class="t-no">Tres botones y la persona no toca ninguno.</span></div><div class="seg"><button type="button" data-v="si">Sí</button><button type="button" data-v="no">No</button></div></div>
+      </div>
+      <div class="rc">
+        <div class="rc-stage"><div class="rv si" style="background:#E9E2D0"><span class="eb" style="color:#51091B">Cómo trabajamos</span><div class="rx-p">Te mandamos una guía, el creador graba y en 48 horas tienes el primer video.</div></div><div class="rv no" style="background:#E9E2D0"><div class="rx-p" style="text-transform:uppercase;letter-spacing:.06em;font-size:12px">Te mandamos una guía, el creador graba y en 48 horas tienes el primer video.</div></div></div>
+        <div class="rc-foot"><div class="rc-txt"><b>Mayúsculas en su lugar</b><span class="t-si">Mayúsculas solo en eyebrows y miniaturas.</span><span class="t-no">Un párrafo en mayúsculas se lee como un grito.</span></div><div class="seg"><button type="button" data-v="si">Sí</button><button type="button" data-v="no">No</button></div></div>
+      </div>
+      <div class="rc">
+        <div class="rc-stage"><div class="rv si" style="background:#E9E2D0"><div class="rx-t display" style="">Nuevo caso de éxito</div><div class="rx-p">Una marca de skincare vendió todo su stock.</div></div><div class="rv no" style="background:#E9E2D0"><div class="rx-t" style="font-family:Georgia,serif;font-style:italic;font-weight:400">Nuevo caso de éxito</div><div class="rx-p" style="font-family:'Courier New',monospace">Una marca de skincare vendió todo su stock.</div></div></div>
+        <div class="rc-foot"><div class="rc-txt"><b>Tipografía de la marca</b><span class="t-si">Solo Space Grotesk e Karla.</span><span class="t-no">Otras fuentes rompen la voz de la marca.</span></div><div class="seg"><button type="button" data-v="si">Sí</button><button type="button" data-v="no">No</button></div></div>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span class="brand-name">Simply Andy</span> · Sistema visual · Space Grotesk + Karla</div></footer>
+<div class="toast" id="toast">Copiado</div>
+
+<script>
+const C = [
+  {hex:'#E9E2D0', name:'Eggshell',      role:'Fondo principal',        fg:'#2A2620'},
+  {hex:'#61603A', name:'Oliva',  role:'Identidad y acento',     fg:'#E9E2D0'},
+  {hex:'#864C24', name:'Cuero',  role:'Acento cálido',          fg:'#E9E2D0'},
+  {hex:'#2A2620', name:'Tinta',    role:'Texto y fondo oscuro',   fg:'#E9E2D0'},
+  {hex:'#1F2C44', name:'Índigo',  role:'Fondo premium',          fg:'#E9E2D0'},
+  {hex:'#51091B', name:'Bordó', role:'Soporte',           fg:'#E9E2D0'}
+];
+
+const toast = document.getElementById('toast');
+function notify(t){toast.textContent=t;toast.classList.add('show');clearTimeout(notify.t);notify.t=setTimeout(()=>toast.classList.remove('show'),1400)}
+function copy(txt,msg){
+  (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>notify(msg),()=>{
+    const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy')}catch(e){} ta.remove();notify(msg);
+  });
+}
+
+// Swatches
+document.getElementById('swatches').innerHTML = C.map(c=>`
+  <div class="sw" style="background:${c.hex};color:${c.fg}" data-hex="${c.hex}">
+    <span class="copy">Clic para copiar</span>
+    <div><div class="hex">${c.hex.slice(1)}</div><div class="nm">${c.name}</div><div class="role">${c.role}</div></div>
+  </div>`).join('');
+document.querySelectorAll('.sw').forEach(el=>el.onclick=()=>copy(el.dataset.hex, el.dataset.hex+' copiado'));
+
+// Contraste
+function lum(hex){
+  const v=[1,3,5].map(i=>parseInt(hex.substr(i,2),16)/255).map(x=>x<=.03928?x/12.92:Math.pow((x+.055)/1.055,2.4));
+  return .2126*v[0]+.7152*v[1]+.0722*v[2];
+}
+function ratio(a,b){const l1=lum(a),l2=lum(b);return (Math.max(l1,l2)+.05)/(Math.min(l1,l2)+.05)}
+const CC=[...C,{hex:'#FFFFFF',name:'Blanco'}];
+const lvl=r=>r>=7?['AAA','b-ok']:r>=4.5?['AA','b-ok']:r>=3?['Solo títulos','b-big']:['✕ Evitar','b-bad'];
+const WHY={
+  'Bordó':'Es oscuro. Se funde con otros fondos oscuros.',
+  'Oliva':'Es oscuro. Como texto solo funciona sobre fondos claros.',
+  'Cuero':'Es oscuro. Como texto solo funciona sobre fondos claros.',
+  'Eggshell':'Dos claros juntos no se distinguen.',
+  'Blanco':'Dos claros juntos no se distinguen.',
+  'Tinta':'Dos oscuros juntos se funden.',
+  'Índigo':'Dos oscuros juntos se funden.'
+};
+let html='<tr><th>Texto ↓ / Fondo →</th>'+CC.map(c=>`<th>${c.name}</th>`).join('')+'</tr>';
+const avoid=[],big=[];
+CC.forEach(t=>{
+  html+=`<tr><th>${t.name}</th>`;
+  CC.forEach(b=>{
+    if(t.hex===b.hex){html+='<td class="na"></td>';return}
+    const r=ratio(t.hex,b.hex),[l,c]=lvl(r);
+    if(r<3)avoid.push({t,b,r});else if(r<4.5)big.push({t,b,r});
+    html+=`<td class="${r<3?'td-bad':''}" style="background:${b.hex};color:${t.hex}"><div class="aa">Aa</div><div class="r">${r.toFixed(1)}:1</div><span class="badge ${c}">${l}</span></td>`;
+  });
+  html+='</tr>';
+});
+document.getElementById('matrix').innerHTML=html;
+const tile=(x,bad)=>`<div class="av ${bad?'av-bad':'av-big'}"><div class="av-demo" style="background:${x.b.hex};color:${x.t.hex}"><span class="av-t">${bad?'Texto de ejemplo':'Título grande'}</span><span class="av-s">${bad?'Así se vería un párrafo.':''}</span></div><div class="av-info"><b>${x.t.name} sobre ${x.b.name}</b><span>${x.r.toFixed(1)}:1 · ${bad?WHY[x.t.name]:'Úsalo solo en 24px o más.'}</span></div><i class="badge ${bad?'b-bad':'b-big'}">${bad?'✕ Evitar':'Solo títulos'}</i></div>`;
+document.getElementById('avoidGrid').innerHTML=avoid.sort((a,b)=>a.r-b.r).map(x=>tile(x,true)).join('');
+document.getElementById('bigGrid').innerHTML=big.sort((a,b)=>a.r-b.r).map(x=>tile(x,false)).join('');
+
+// Temas
+const P={cream:'#E9E2D0',apri:'#864C24',peri:'#61603A',black:'#2A2620',maho:'#1F2C44',grey:'#51091B'};
+const THEMES=[
+  {name:'Cálido',        note:'Cálido: el tema del día a día. Fondo Eggshell, texto Tinta, acento Oliva.',   bg:P.cream, fg:P.black, ac:P.peri, ac2:P.maho, mu:P.grey},
+  {name:'Oliva', note:'Oliva: fondo Oliva. Para lanzamientos, carruseles educativos y portadas que tienen que destacar.',  bg:P.peri, fg:P.cream, ac:P.apri, ac2:P.maho, mu:P.cream},
+  {name:'Noche',         note:'Noche: fondo Tinta. Para reels, tendencias y contenido con más energía.',    bg:P.black,fg:P.cream, ac:P.peri, ac2:P.grey, mu:P.cream},
+  {name:'Premium',       note:'Premium: fondo Índigo. Para propuestas, precios y casos de éxito.',  bg:P.maho, fg:P.cream, ac:P.peri, ac2:P.grey, mu:P.cream}
+];
+const bar=document.getElementById('themeBar'), shuffle=document.getElementById('shuffle');
+THEMES.forEach((t,i)=>{
+  const b=document.createElement('button');b.className='theme-btn';b.dataset.i=i;
+  b.innerHTML=`<span class="chips"><b style="background:${t.bg}"></b><b style="background:${t.fg}"></b><b style="background:${t.ac}"></b></span>${t.name}`;
+  b.onclick=()=>setTheme(i);bar.insertBefore(b,shuffle);
+});
+let cur=0;
+function setTheme(i){
+  cur=i;const t=THEMES[i],r=document.documentElement.style;
+  r.setProperty('--bg',t.bg);r.setProperty('--fg',t.fg);r.setProperty('--ac',t.ac);r.setProperty('--ac2',t.ac2);r.setProperty('--mu',t.mu);
+  document.querySelectorAll('.theme-btn').forEach(b=>b.classList.toggle('on',+b.dataset.i===i));
+  document.getElementById('themeNote').textContent=t.note;
+  paintLabLogos(t);
+}
+
+shuffle.onclick=()=>setTheme((cur+1)%THEMES.length);
+setTheme(0);
+
+// Logo real (recoloreable)
+function logoSVG(w, ink, dot){
+  const h = Math.round(w*76/256);
+  return '<svg viewBox="0 0 256 76" width="'+w+'" height="'+h+'" xmlns="http://www.w3.org/2000/svg">'
+    + '<text x="0" y="58" font-family="Archivo, Helvetica, Arial, sans-serif" font-weight="700" font-size="76" letter-spacing="-3.42" fill="'+ink+'">andy</text>'
+    + '<circle cx="177" cy="29" r="7.5" fill="'+dot+'"></circle>'
+    + '<text x="188" y="25.5" font-family="DM Mono, ui-monospace, monospace" font-size="11.5" letter-spacing="1.84" fill="'+ink+'">UGC</text>'
+    + '<text x="188" y="42" font-family="DM Mono, ui-monospace, monospace" font-size="11.5" letter-spacing="1.84" fill="'+ink+'">CREATOR</text>'
+    + '</svg>';
+}
+function paintFixedLogos(){
+  document.querySelectorAll('[data-logo]:not(.lab-logo)').forEach(el=>{
+    const w = parseInt(el.getAttribute('data-logo'),10) || 120;
+    el.innerHTML = logoSVG(w, '#2A2620', '#61603A');
+  });
+}
+function paintLabLogos(t){
+  document.querySelectorAll('.lab-logo').forEach(el=>{
+    const w = parseInt(el.getAttribute('data-logo'),10) || 100;
+    el.innerHTML = logoSVG(w, t.fg, t.ac);
+  });
+}
+paintFixedLogos();
+
+function esc(s){return s.replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]))}
+// Subtítulos animados del reel
+let capTimer,capIdx=0;
+function buildCaption(text){
+  const cap=document.getElementById('caption');
+  cap.innerHTML=text.split(' ').map(w=>`<span>${esc(w)}</span>`).join(' ');
+  clearInterval(capTimer);capIdx=0;
+  const spans=cap.querySelectorAll('span');
+  capTimer=setInterval(()=>{spans.forEach(s=>s.classList.remove('hl'));spans[capIdx%spans.length].classList.add('hl');capIdx++},450);
+}
+buildCaption('Contenido real, sin filtro.');
+
+
+// Reglas: Sí / No dinámico (por grupo)
+document.querySelectorAll('.rgroup').forEach(g=>{
+  const cards=[...g.querySelectorAll('.rc')], autoBtn=g.querySelector('[data-auto]'), start0=g.dataset.start||'si';
+  const other=v=>v==='si'?'no':'si';
+  const setC=(c,v)=>{c.classList.toggle('is-no',v==='no');c.classList.toggle('is-si',v==='si')};
+  cards.forEach(c=>setC(c,start0));
+  let auto=!window.matchMedia('(prefers-reduced-motion: reduce)').matches, tick=0, timer;
+  const allBtns=[...g.querySelectorAll('.rb[data-all]')];
+  function stop(){auto=false;autoBtn.classList.remove('on');clearInterval(timer)}
+  function start(){auto=true;autoBtn.classList.add('on');allBtns.forEach(b=>b.classList.remove('on'));
+    clearInterval(timer);timer=setInterval(()=>{tick++;cards.forEach((c,i)=>setTimeout(()=>setC(c,tick%2?other(start0):start0),i*120))},3400)}
+  cards.forEach(c=>c.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{stop();setC(c,b.dataset.v)}));
+  allBtns.forEach(b=>b.onclick=()=>{stop();allBtns.forEach(x=>x.classList.toggle('on',x===b));cards.forEach(c=>setC(c,b.dataset.all))});
+  autoBtn.onclick=()=>auto?stop():start();
+  if(auto)start();else autoBtn.classList.remove('on');
+});
+
+// Video: combinaciones
+(function(){
+  const cr='#E9E2D0',pe='#61603A',ap='#864C24',ne='#2A2620',ma='#1F2C44',wh='#FFFFFF';
+  const V=[
+    {n:'Clásico',note:'Clásico: sirve para casi todos los videos. Subtítulo Tinta con palabra clave en Oliva.',
+     v:{sub:[ne,wh],hl:[pe,cr],box:[ap,cr],ltn:[ne,cr],ltr:[pe,cr],w:[pe,cr,ne,pe],end:[ne,cr,cr]},
+     t:{sub:'Caja Tinta con texto Blanco. Palabra clave resaltada en Oliva.',box:'Caja Cuero, texto Eggshell. Para testimonios.',lt:'Nombre en Eggshell sobre Tinta. Rol sobre Oliva.',wipe:'Oliva, Eggshell, Tinta y Oliva.',end:'Fondo Tinta, nombre y usuario en Eggshell.'}},
+    {n:'Oliva',note:'Oliva: más fresco. Para tips, tutoriales y contenido educativo.',
+     v:{sub:[pe,cr],hl:[ne,cr],box:[pe,cr],ltn:[pe,cr],ltr:[ne,cr],w:[pe,ne,cr,pe],end:[pe,cr,cr]},
+     t:{sub:'Caja Oliva con texto Eggshell. Palabra clave en Tinta con texto Eggshell.',box:'Caja Oliva, texto Eggshell.',lt:'Nombre en Eggshell sobre Oliva. Rol en Eggshell sobre Tinta.',wipe:'Oliva, Tinta, Eggshell y Oliva.',end:'Fondo Oliva, nombre y usuario en Eggshell.'}},
+    {n:'Eggshell',note:'Eggshell: suave y limpio. Para testimonios y videos con mucho texto.',
+     v:{sub:[cr,ne],hl:[ap,cr],box:[cr,ne],ltn:[cr,ne],ltr:[ap,cr],w:[cr,ap,ne,cr],end:[cr,ne,ne]},
+     t:{sub:'Caja Eggshell con texto Tinta. Palabra clave en Cuero.',box:'Caja Eggshell, texto Tinta.',lt:'Nombre en Tinta sobre Eggshell. Rol sobre Cuero.',wipe:'Eggshell, Cuero, Tinta y Eggshell.',end:'Fondo Eggshell, nombre y usuario en Tinta.'}},
+    {n:'Cuero',note:'Cuero: cálido y cercano. Para unboxing, rutinas y lifestyle.',
+     v:{sub:[ap,cr],hl:[ne,cr],box:[ap,cr],ltn:[ne,cr],ltr:[ap,cr],w:[ap,ne,cr,ap],end:[ap,cr,cr]},
+     t:{sub:'Caja Cuero con texto Eggshell. Palabra clave en Tinta con texto Eggshell.',box:'Caja Cuero, texto Eggshell.',lt:'Nombre en Eggshell sobre Tinta. Rol sobre Cuero.',wipe:'Cuero, Tinta, Eggshell y Cuero.',end:'Fondo Cuero, nombre y usuario en Eggshell.'}},
+    {n:'Premium',note:'Premium: solo para casos de éxito y videos de cierre de colaboración. Aquí sí va el Índigo.',
+     v:{sub:[ma,cr],hl:[pe,cr],box:[cr,ma],ltn:[ma,cr],ltr:[pe,cr],w:[ma,pe,cr,ma],end:[ma,cr,cr]},
+     t:{sub:'Caja Índigo con texto Eggshell. Palabra clave en Oliva.',box:'Caja Eggshell, texto Índigo.',lt:'Nombre en Eggshell sobre Índigo. Rol sobre Oliva.',wipe:'Índigo, Oliva, Eggshell y Índigo.',end:'Fondo Índigo, nombre y usuario en Eggshell.'}}
+  ];
+  const grid=document.getElementById('vidGrid'), wrap=document.getElementById('vCombos'), note=document.getElementById('vNote');
+  // envolver líneas del subtítulo para la caja
+  grid.querySelector('.sub1').innerHTML='<span>Esto me cambió</span><br><span>la <b>rutina</b></span>';
+  function setV(i){
+    const x=V[i],st=grid.style,m={sub:'sub',hl:'hl',box:'box',ltn:'ltn',ltr:'ltr'};
+    Object.keys(m).forEach(k=>{st.setProperty(`--v-${k}-bg`,x.v[k][0]);st.setProperty(`--v-${k}-fg`,x.v[k][1])});
+    x.v.w.forEach((c,j)=>st.setProperty(`--v-w${j+1}`,c));
+    st.setProperty('--v-end-bg',x.v.end[0]);st.setProperty('--v-end-fg',x.v.end[1]);st.setProperty('--v-end-ac',x.v.end[2]);
+    grid.querySelectorAll('[data-vtxt]').forEach(p=>p.textContent=x.t[p.dataset.vtxt]);
+    note.textContent=x.note;
+    wrap.querySelectorAll('button').forEach((b,j)=>b.classList.toggle('on',j===i));
+  }
+  V.forEach((x,i)=>{const b=document.createElement('button');b.type='button';b.className='theme-btn';
+    b.innerHTML=`<span class="chips"><b style="background:${x.v.sub[0]}"></b><b style="background:${x.v.hl[0]}"></b><b style="background:${x.v.end[0]}"></b></span>${x.n}`;
+    b.onclick=()=>setV(i);wrap.appendChild(b)});
+  const shots={light:'linear-gradient(160deg,#f4e6d6,#dcc0a4 55%,#b3947b)',dark:'linear-gradient(160deg,#4a4745,#262425 60%,#0f0e0f)'};
+  document.querySelectorAll('[data-shot]').forEach(b=>b.onclick=()=>{grid.style.setProperty('--shot',shots[b.dataset.shot]);document.querySelectorAll('[data-shot]').forEach(x=>x.classList.toggle('on',x===b))});
+  grid.style.setProperty('--shot',shots.light);
+  setV(0);
+})();
+</script>
+</body>
+</html>
